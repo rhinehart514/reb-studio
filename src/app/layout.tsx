@@ -1,21 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-display",
+  weight: "400",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "REB — Your site works while you sleep",
+  title: "REB Studio — Your site works while you sleep",
   description:
-    "Custom websites with an AI that manages everything. Built by hand. Powered by intelligence.",
+    "AI-powered websites for local businesses. Connect Square, and we handle the rest. $49 first month.",
+  openGraph: {
+    title: "REB Studio — Your site works while you sleep",
+    description:
+      "AI-powered websites for local businesses. Connect Square, and we handle the rest.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
       </body>

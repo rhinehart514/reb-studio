@@ -1,0 +1,81 @@
+name: reb-studio
+description: AI-native Website-as-a-Service for local businesses
+stage: mvp
+type: web
+
+features:
+  - name: landing-page
+    status: active
+    weight: 5
+    description: Product marketing landing page at /
+    code:
+      - src/app/page.tsx
+      - src/app/layout.tsx
+      - src/components/landing/
+
+  - name: client-site
+    status: active
+    weight: 5
+    description: Client website template at /preview
+    code:
+      - src/app/(client-site)/
+      - src/components/public/
+      - src/components/providers/
+      - src/hooks/
+      - src/lib/defaults.ts
+
+  - name: dashboard
+    status: active
+    weight: 4
+    description: Client dashboard with AI chat
+    code:
+      - src/app/dashboard/
+      - src/components/dashboard/
+
+  - name: admin-panel
+    status: active
+    weight: 3
+    description: Admin panel for content management
+    code:
+      - src/app/admin/
+      - src/components/admin/
+
+  - name: ai-agent
+    status: active
+    weight: 4
+    description: AI content management agent via chat
+    code:
+      - src/app/api/agent/route.ts
+      - src/app/api/chat/route.ts
+      - src/app/api/activity/route.ts
+
+  - name: square-integration
+    status: active
+    weight: 5
+    description: Square OAuth + data sync + webhooks
+    code:
+      - src/lib/square.ts
+      - src/app/api/square/
+
+  - name: onboarding
+    status: active
+    weight: 5
+    description: AI onboarding flow at /get-started
+    code:
+      - src/app/get-started/
+      - src/components/onboarding/
+      - src/app/api/onboard/route.ts
+
+  - name: infrastructure
+    status: active
+    weight: 3
+    description: Auth, storage, types, schemas, middleware
+    code:
+      - src/lib/types.ts
+      - src/lib/schemas.ts
+      - src/lib/storage.ts
+      - src/lib/auth.ts
+      - src/middleware.ts
+      - src/app/api/auth/
+      - src/app/api/content/
+      - src/app/api/upload/route.ts
