@@ -112,17 +112,7 @@ export function Hero({ hero }: { hero: HeroContent }) {
               {hero.tagline}
             </p>
             <div data-hero-animate className="flex flex-wrap items-center gap-4">
-              <a
-                href={hero.ctaLink}
-                className="btn-primary"
-                style={{ background: "var(--sage)", color: "var(--pure-white)" }}
-                onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  e.currentTarget.style.background = "var(--sage-dark)";
-                }}
-                onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  e.currentTarget.style.background = "var(--sage)";
-                }}
-              >
+              <a href={hero.ctaLink} className="btn-primary">
                 {hero.ctaText}
               </a>
               <a href="#story" className="btn-ghost">
