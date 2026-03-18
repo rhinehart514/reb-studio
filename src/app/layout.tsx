@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "REB — Your site works while you sleep",
+  title: "ROHLAX — Where Stillness Becomes Strength",
   description:
-    "Custom websites with an AI that manages everything. Built by hand. Powered by intelligence.",
+    "Premium luxury wellness studio in Buffalo, NY. Therapeutic massage, signature facials, body treatments, aromatherapy, meditation, and IV wellness therapy. Where stillness becomes strength.",
 };
 
 export default function RootLayout({
