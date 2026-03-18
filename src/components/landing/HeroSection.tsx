@@ -2,36 +2,44 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#0a0a0a] reb-grid-bg pt-16">
-      {/* Gradient overlay to fade grid */}
+    <section className="relative min-h-[100svh] flex items-end bg-[#0a0a0a] pt-14 pb-16 md:pb-24">
+      {/* Subtle dot grid — faded */}
+      <div className="absolute inset-0 reb-grid-bg opacity-40" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a] pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.05]">
-          <span className="bg-gradient-to-r from-violet-400 to-white bg-clip-text text-transparent">
-            Your site works
-          </span>
-          <br />
-          <span className="text-white">while you sleep</span>
-        </h1>
+      <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
+        <div className="max-w-3xl">
+          <p className="text-sm text-amber-400/80 font-medium tracking-wide mb-4">
+            Built for salons, studios, and shops on Square
+          </p>
 
-        <p className="mt-6 text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-          AI-powered websites for local businesses. Connect Square, and we handle the rest.
-        </p>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-normal tracking-tight leading-[1.02]">
+            <span className="text-white">Your site works</span>
+            <br />
+            <span className="bg-gradient-to-r from-violet-400 to-violet-300 bg-clip-text text-transparent">
+              while you sleep
+            </span>
+          </h1>
 
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/get-started"
-            className="w-full sm:w-auto text-center bg-violet-600 hover:bg-violet-500 text-white font-medium px-8 py-3.5 rounded-md transition-colors text-sm tracking-wide"
-          >
-            Connect Square
-          </Link>
-          <Link
-            href="/get-started"
-            className="w-full sm:w-auto text-center border border-[#333] hover:border-zinc-500 text-zinc-300 hover:text-white font-medium px-8 py-3.5 rounded-md transition-colors text-sm tracking-wide"
-          >
-            Tell us about your business
-          </Link>
+          <p className="mt-6 text-lg text-zinc-500 max-w-md leading-relaxed">
+            Connect Square. Get a website that updates itself.
+            No agencies, no maintenance, no thinking about it.
+          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-start gap-3">
+            <Link
+              href="/get-started"
+              className="w-full sm:w-auto text-center bg-violet-600 hover:bg-violet-500 text-white font-medium px-8 py-3.5 rounded transition-colors text-sm tracking-wide"
+            >
+              Connect Square
+            </Link>
+            <Link
+              href="/get-started"
+              className="w-full sm:w-auto text-center border border-zinc-800 hover:border-zinc-600 text-zinc-400 hover:text-zinc-200 font-medium px-8 py-3.5 rounded transition-colors text-sm tracking-wide"
+            >
+              Tell us about your business
+            </Link>
+          </div>
         </div>
       </div>
     </section>
