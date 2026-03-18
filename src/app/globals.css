@@ -4,10 +4,8 @@
   --bg: #0a0a0a;
   --text: #fafafa;
   --muted: #888;
-  --surface: #111111;
-  --border: #1e1e1e;
-  --accent: #d4a574;
-  --accent-light: #e8c9a0;
+  --surface: #141414;
+  --border: #262626;
   --background: #0a0a0a;
   --foreground: #fafafa;
 }
@@ -28,7 +26,7 @@ body {
 }
 
 ::selection {
-  background: rgba(212, 165, 116, 0.4);
+  background: rgba(124, 58, 237, 0.4);
   color: #fafafa;
 }
 
@@ -62,15 +60,6 @@ body {
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
 .animate-fade-in-up {
   animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
@@ -83,10 +72,6 @@ body {
 .animate-fade-in {
   animation: fade-in 0.5s ease forwards;
   opacity: 0;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
 }
 
 /* Stagger delays for hero */
@@ -120,15 +105,10 @@ body {
 .gradient-border-hover:hover {
   border-color: transparent;
   background: linear-gradient(var(--surface), var(--surface)) padding-box,
-              linear-gradient(135deg, #d4a574, #b8860b) border-box;
+              linear-gradient(135deg, #7c3aed, #4f46e5) border-box;
 }
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-}
-
-/* Serif heading utility */
-.font-serif-display {
-  font-family: Georgia, 'Times New Roman', serif;
 }
