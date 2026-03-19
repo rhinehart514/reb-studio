@@ -240,3 +240,65 @@ export async function getSquareToken(): Promise<string | null> {
 export async function setSquareToken(token: string): Promise<void> {
   await setSquareTokenData({ accessToken: token, refreshToken: "", expiresAt: "" });
 }
+
+// Click tracking
+
+export async function trackClick(event: string, label: string): Promise<void> {
+  const day = new Date().toISOString().split("T")[0];
+  const entry = JSON.stringify({ event, label, time: new Date().toISOString() });
+
+  if (hasRedis) {
+    return withRedis(async (redis) => {
+      await redis.lPush(`reb:clicks:${day}`, entry);
+      await redis.expire(`reb:clicks:${day}`, 90 * 86400); // 90 days TTL
+    });
+  }
+
+  const store = await readDevContent();
+  const clicks = (store.__clicks as Record<string, unknown[]>) ?? {};
+  if (!clicks[day]) clicks[day] = [];
+  clicks[day].push({ event, label, time: new Date().toISOString() });
+  store.__clicks = clicks;
+  await writeDevContent(store);
+}
+
+export async function getClickStats(days: number): Promise<{
+  total: number;
+  byDay: Array<{ date: string; count: number }>;
+  byEvent: Record<string, number>;
+}> {
+  const result: { total: number; byDay: Array<{ date: string; count: number }>; byEvent: Record<string, number> } = {
+    total: 0,
+    byDay: [],
+    byEvent: {},
+  };
+
+  for (let i = 0; i < days; i++) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const day = d.toISOString().split("T")[0];
+
+    let entries: string[] = [];
+    if (hasRedis) {
+      entries = await withRedis(async (redis) => redis.lRange(`reb:clicks:${day}`, 0, -1));
+    } else {
+      const store = await readDevContent();
+      const clicks = (store.__clicks as Record<string, unknown[]>) ?? {};
+      entries = (clicks[day] ?? []).map((e) => JSON.stringify(e));
+    }
+
+    const count = entries.length;
+    if (count > 0) {
+      result.byDay.push({ date: day, count });
+      result.total += count;
+      for (const raw of entries) {
+        try {
+          const parsed = JSON.parse(raw) as { event: string };
+          result.byEvent[parsed.event] = (result.byEvent[parsed.event] ?? 0) + 1;
+        } catch {}
+      }
+    }
+  }
+
+  return result;
+}

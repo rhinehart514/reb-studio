@@ -80,6 +80,13 @@ export function Services({ services }: { services: ServicesContent }) {
                     rel="noopener noreferrer"
                     className="inline-flex text-xs font-bold tracking-widest uppercase px-6 py-3 transition-all duration-300 self-start hover:opacity-80"
                     style={{ background: "var(--pure-white)", color: "var(--sage)" }}
+                    onClick={() => {
+                      fetch("/api/track", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ event: "booking_click", label: featured.name }),
+                      }).catch(() => {});
+                    }}
                   >
                     Book This Session
                   </a>
@@ -161,6 +168,13 @@ export function Services({ services }: { services: ServicesContent }) {
                         rel="noopener noreferrer"
                         className="text-[0.5625rem] font-bold tracking-[0.15em] uppercase transition-opacity hover:opacity-60"
                         style={{ color: "var(--sage)" }}
+                        onClick={() => {
+                          fetch("/api/track", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ event: "booking_click", label: service.name }),
+                          }).catch(() => {});
+                        }}
                       >
                         Book Now &rarr;
                       </a>

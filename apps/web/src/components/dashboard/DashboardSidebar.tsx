@@ -7,6 +7,7 @@ import {
   MessageCircle,
   Globe,
   FileStack,
+  BarChart3,
   Settings,
   Menu,
   X,
@@ -19,6 +20,7 @@ const NAV_ITEMS = [
   { label: "AI Chat", href: "/dashboard/chat", icon: MessageCircle },
   { label: "My Site", href: "/dashboard/site", icon: Globe },
   { label: "Content", href: "/dashboard/content", icon: FileStack },
+  { label: "Reports", href: "/dashboard/reports", icon: BarChart3 },
   { label: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 

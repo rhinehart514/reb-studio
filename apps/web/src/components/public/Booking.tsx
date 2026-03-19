@@ -38,6 +38,13 @@ export function Booking({ bookingUrl }: BookingProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
+              onClick={() => {
+                fetch("/api/track", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ event: "booking_click", label: "main_cta" }),
+                }).catch(() => {});
+              }}
             >
               Book Online
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

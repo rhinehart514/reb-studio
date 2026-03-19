@@ -3,9 +3,10 @@ import {
   Globe,
   Clock,
   ArrowUpRight,
+  MousePointerClick,
 } from "lucide-react";
 import Link from "next/link";
-import { getActivity, getContent, getSquareTokenData } from "@/lib/storage";
+import { getActivity, getContent, getSquareTokenData, getClickStats } from "@/lib/storage";
 import { defaults } from "@/lib/defaults";
 
 function getGreeting(): string {
@@ -30,7 +31,7 @@ const QUICK_ACTIONS = [
 ];
 
 export default async function DashboardOverview() {
-  const [activity, services, settings, hero, story, testimonials, events, contact, squareToken] =
+  const [activity, services, settings, hero, story, testimonials, events, contact, squareToken, clicks] =
     await Promise.all([
       getActivity(),
       getContent("services"),
@@ -41,6 +42,7 @@ export default async function DashboardOverview() {
       getContent("events"),
       getContent("contact"),
       getSquareTokenData(),
+      getClickStats(7),
     ]);
 
   const serviceCount = services.services.length;
@@ -75,21 +77,22 @@ export default async function DashboardOverview() {
         </p>
       </div>
 
-      {/* Metrics — real data from content store */}
+      {/* Metrics — real data */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
         <div className="bg-[#141414] border border-[#262626] rounded-lg p-5 hover:border-[#333] hover:-translate-y-px transition-all duration-150">
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2 mb-3">
+            <MousePointerClick className="w-3.5 h-3.5 text-violet-400" />
             <span className="text-xs uppercase tracking-wider text-zinc-500">
-              SERVICES LISTED
+              BOOKING CLICKS — 7 DAYS
             </span>
           </div>
           <p className="text-3xl font-semibold font-mono tabular-nums text-white transition-all duration-700">
-            {serviceCount}
+            {clicks.total}
           </p>
           <p className="text-xs font-mono text-zinc-600 mt-1">
-            {serviceCount === 0
-              ? "Add services via chat"
-              : `${services.services.filter((s) => s.featured).length} featured`}
+            {clicks.total === 0
+              ? "Deploy your site to start tracking"
+              : `People who clicked Book Now`}
           </p>
         </div>
         <div className="bg-[#141414] border border-[#262626] rounded-lg p-5 hover:border-[#333] hover:-translate-y-px transition-all duration-150">
