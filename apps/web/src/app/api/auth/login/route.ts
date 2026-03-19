@@ -6,7 +6,12 @@ import {
 } from "@/lib/auth";
 
 export async function POST(request: Request) {
-  const { username, password } = await request.json();
+  let username: string, password: string;
+  try {
+    ({ username, password } = await request.json());
+  } catch {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
 
   if (!validateCredentials(username, password)) {
     return NextResponse.json(

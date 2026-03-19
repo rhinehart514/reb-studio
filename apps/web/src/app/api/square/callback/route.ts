@@ -59,9 +59,13 @@ export async function GET(request: NextRequest) {
       // Connection succeeded even if sync partially failed
     }
 
-    return NextResponse.redirect(
-      new URL("/dashboard?success=square_connected", baseUrl)
-    );
+    // Check if user came from onboarding flow (state cookie includes origin)
+    const fromOnboarding = savedState?.startsWith("onboard_");
+    const redirectPath = fromOnboarding
+      ? "/get-started?success=square_connected"
+      : "/dashboard?success=square_connected";
+
+    return NextResponse.redirect(new URL(redirectPath, baseUrl));
   } catch (err) {
     console.error("Square callback error:", err);
     return NextResponse.redirect(

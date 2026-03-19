@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+
+const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
 
 export default function DashboardPreview() {
   return (
@@ -99,16 +100,19 @@ export default function DashboardPreview() {
           </div>
         </div>
 
-        <div className="mt-6">
-          <Link
-            href="/preview"
-            target="_blank"
-            className="inline-flex items-center gap-1.5 text-sm text-zinc-600 hover:text-zinc-400 transition-colors"
-          >
-            See an example site
-            <ExternalLink className="w-3 h-3" />
-          </Link>
-        </div>
+        {webUrl && (
+          <div className="mt-6">
+            <a
+              href={`${webUrl}/preview`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-zinc-600 hover:text-zinc-400 transition-colors"
+            >
+              See an example site
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
