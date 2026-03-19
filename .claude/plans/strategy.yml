@@ -2,34 +2,56 @@ stage: mvp
 mode: build
 
 diagnosis: |
-  REB Studio is a productized web agency. Laney builds custom sites, clients get
-  a dashboard + AI agent that manages ongoing content updates. Square integration
-  syncs services/hours automatically.
+  Chelsea has NO website. Her web presence is LinkTree → Vagaro. Every competitor
+  (StretchLab, Stretchd Out, Spa 400) has a real site. She has a 5.0 Vagaro rating
+  but zero public reviews. She's behind on SEO surface, not service quality.
 
-  Chelsea's custom site is built. The dashboard and AI agent are functional.
-  The bottleneck is putting it in front of Chelsea and watching her use the
-  AI chat to make a real change to her real site.
+  Her differentiator is real: decade of PT experience, personal connection vs franchise
+  studios, burnout-pivot story that resonates. None of this is visible online.
 
-bottleneck: chelsea-uses-dashboard
-bottleneck_reason: "The custom site exists. The AI agent works. But Chelsea hasn't opened the dashboard or chatted with the AI yet. Until she does, we don't know if this model works."
+  The product is a custom site Laney built + AI agent to manage it. NOT self-serve.
+  NOT AI-generated. Chelsea gets a professional site that makes her look like the
+  premium solo practitioner she is, plus a dashboard to manage it without calling Laney.
+
+  Key insight: she's on VAGARO, not Square. The Square integration is for future
+  clients. Chelsea needs Vagaro booking embedded in her site.
+
+bottleneck: chelsea-has-real-content
+bottleneck_reason: |
+  The site template is built but running on defaults. Chelsea needs to provide:
+  1. Service menu with actual prices (nothing is public anywhere)
+  2. Her story in her own words (PT background, why she pivoted)
+  3. Real testimonials from clients (5.0 on Vagaro but locked inside the platform)
+  4. Photos of her and the space
+  Until we have real content, we can't deploy. Until we deploy, we can't validate.
 
 bets:
-  - name: square-onboarding-works
-    confidence: 0.6
-    evidence: "OAuth flow is complete, sync maps catalog to content, but untested with real Square data"
-    risk: "Square sandbox data ≠ real merchant data shapes. Edge cases in catalog mapping."
+  - name: site-beats-linktree
+    confidence: 0.9
+    evidence: "Every competitor has a real site. Chelsea has LinkTree. The bar is low."
+    risk: "Chelsea may not prioritize providing content if she's busy with clients."
 
-  - name: ai-chat-is-preferred
+  - name: seo-brings-new-clients
+    confidence: 0.5
+    evidence: "No one ranks for 'assisted stretching Williamsville NY' with a real site. Low competition."
+    risk: "Search volume may be too low. People may find stretching services through Vagaro search, not Google."
+
+  - name: ai-agent-used-over-texting
     confidence: 0.4
-    evidence: "Chat UI exists, AI agent has tools, but no user preference data"
-    risk: "Business owners may not trust AI to edit their site. May prefer forms."
-
-  - name: pricing-converts
-    confidence: 0.3
-    evidence: "$49 first month is aggressive. No market testing."
-    risk: "Could be too cheap (looks low quality) or too expensive (compared to free)."
+    evidence: "Chat UI works, tools are functional. But Chelsea may prefer texting Laney."
+    risk: "If she never opens the dashboard, the $199/mo value is just the site itself — hard to justify vs one-time build."
 
 anti-patterns:
-  - "Building more features before validating the first user's experience"
-  - "Polishing the landing page before proving the product works"
-  - "Adding multi-tenant before proving single-tenant"
+  - "Building Square integration when Chelsea is on Vagaro"
+  - "Building class schedule when she only does 1:1 appointments"
+  - "Building provider directory when she's a solo practitioner"
+  - "Building intake forms when Vagaro handles this"
+  - "Building analytics before deploying the site"
+
+do-not-build:
+  - Class schedule (she does 1:1 only, no group classes)
+  - Provider directory (solo practitioner)
+  - Intake forms (Vagaro handles this)
+  - E-commerce / gift cards (not yet)
+  - Before/after gallery (not relevant for stretching)
+  - Membership tiers (premature — needs client volume first)

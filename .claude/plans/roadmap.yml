@@ -1,28 +1,49 @@
 version: "0.1.0"
-thesis: "Local business owners will pay $199/mo for a custom-built site + AI agent — IF the site beats what they have and the AI handles updates instantly"
+thesis: "A custom site with real content + Vagaro booking + local SEO will bring Chelsea clients she wouldn't have gotten through LinkTree alone"
 
 evidence:
-  - claim: "Chelsea prefers chatting with AI over texting Laney for content changes"
+  - claim: "Chelsea's site looks more professional than LinkTree + Vagaro page"
     status: untested
-  - claim: "Chelsea's site looks more professional than her LinkTree + Vagaro page"
+    notes: "Need real content first — defaults don't count"
+  - claim: "Site ranks for 'assisted stretching Williamsville NY' within 30 days"
     status: untested
-  - claim: "Chelsea opens the dashboard unprompted within 7 days"
+    notes: "Low competition keyword — achievable if content is real"
+  - claim: "Chelsea gets a booking from someone who found her through the site"
     status: untested
-  - claim: "Chelsea refers a provider from her network"
+    notes: "THE proof of value. Without this, $199/mo is unjustifiable."
+  - claim: "Chelsea prefers AI chat over texting Laney for content changes"
     status: untested
+    notes: "Secondary to getting clients. Nice-to-have, not must-have."
 
 milestones:
-  - name: "v0.1 — First Real User"
-    features: [onboarding, square-integration, ai-agent, client-site, dashboard]
-    criteria: "One real business owner completes onboarding and uses the dashboard"
+  - name: "v0.1 — Real Content"
+    criteria: "All sections populated with Chelsea's real data — services, prices, story, contact, testimonials"
     status: in-progress
+    tasks:
+      - "Get service menu + prices from Chelsea"
+      - "Get her story in her own words"
+      - "Get 3-5 testimonials from real clients"
+      - "Get photos (headshot, space, sessions)"
+      - "Confirm brand: Rohlax Wellness vs The Stretch Room WNY"
 
-  - name: "v0.2 — Retention Signal"
-    features: [ai-agent, dashboard]
-    criteria: "First user returns unprompted within 7 days"
+  - name: "v0.2 — Live + SEO"
+    criteria: "Site deployed on a real domain, Vagaro booking embedded, local SEO live"
     status: planned
+    tasks:
+      - "Deploy to chelsea.reb.studio or custom domain"
+      - "Embed Vagaro booking widget (not redirect)"
+      - "JSON-LD LocalBusiness schema with real data"
+      - "Submit to Google Search Console"
+      - "Set up Google Business Profile link"
 
-  - name: "v0.3 — Second Client"
-    features: [infrastructure, landing-page]
-    criteria: "Second business signs up via landing page"
+  - name: "v0.3 — Dashboard Handoff"
+    criteria: "Chelsea opens the dashboard, makes a real change via AI chat"
+    status: planned
+    tasks:
+      - "15-minute walkthrough with Chelsea"
+      - "Watch her use the AI chat to make a real change"
+      - "Set up Slack notifications for AI changes"
+
+  - name: "v0.4 — First Organic Client"
+    criteria: "Someone books through the site who didn't come from Vagaro/referral"
     status: planned

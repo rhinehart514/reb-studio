@@ -5,81 +5,121 @@ project:
   type: web
 
 value:
-  hypothesis: "A local business owner will pay $199/mo for a custom-built site + AI agent that handles all content updates via chat — IF the site looks professional and the AI responds instantly."
-  user: "A salon owner in Buffalo who uses Square for payments and has no website or a bad one"
+  hypothesis: "Chelsea will pay $199/mo for a custom-built site + AI agent that handles content updates — IF the site looks more professional than her LinkTree+Vagaro and brings in clients she wouldn't have gotten otherwise."
+  user: "Chelsea Rohl, solo assisted stretching practitioner in Williamsville NY, PT background, part-time (~20hrs/week), booking through Vagaro"
   signals:
-    - "Client prefers chatting with AI over emailing Laney for changes"
-    - "Client uses the dashboard without being prompted within 7 days"
-    - "Client refers another business owner from their provider network"
+    - "Chelsea prefers chatting with AI over texting Laney for content changes"
+    - "Chelsea's site ranks for 'assisted stretching Williamsville NY' within 30 days"
+    - "Chelsea gets a booking from someone who found her through the site (not Vagaro/referral)"
+    - "Chelsea opens the dashboard unprompted within 7 days"
 
 features:
-  - name: onboarding
-    status: active
-    weight: 5
-    description: New client intake — Square connect + business info gathering
-    delivers: "Fast data collection so Laney can build the custom site quickly"
-    for: "New business owner starting with REB"
-    code:
-      - apps/web/src/app/get-started/
-      - apps/web/src/components/onboarding/
-      - apps/web/src/app/api/onboard/route.ts
-    depends_on: [square-integration, infrastructure]
+  # ============================================================
+  # CHELSEA'S SITE — what her potential clients see
+  # ============================================================
 
-  - name: square-integration
+  - name: service-menu
     status: active
     weight: 5
-    description: Square OAuth + catalog sync + webhook auto-update
-    delivers: "Services, hours, location auto-imported and kept in sync"
-    for: "Business owner who manages everything through Square"
+    description: Service menu with real prices, durations, and Vagaro booking links
+    delivers: "Potential clients see exactly what Chelsea offers, what it costs, and can book instantly"
+    for: "Someone Googling 'assisted stretching near me' who needs to decide in 30 seconds"
     code:
-      - apps/web/src/lib/square.ts
-      - apps/web/src/app/api/square/
+      - apps/web/src/components/public/Services.tsx
+      - apps/web/src/lib/types.ts
+      - apps/web/src/lib/defaults.ts
+
+  - name: booking-integration
+    status: active
+    weight: 5
+    description: Vagaro booking embedded in-site — clients never leave to a third-party page
+    delivers: "One-click booking without the friction of redirecting to Vagaro"
+    for: "Potential client ready to book who will bounce if sent to another site"
+    code:
+      - apps/web/src/components/public/Booking.tsx
+
+  - name: founder-story
+    status: active
+    weight: 4
+    description: Chelsea's PT background + burnout pivot — the key differentiator vs StretchLab
+    delivers: "Trust and connection — why choose a solo PT over a franchise studio"
+    for: "Client comparing Chelsea to StretchLab/Stretchd Out who needs a reason to pick her"
+    code:
+      - apps/web/src/components/public/Story.tsx
+      - apps/web/src/lib/defaults.ts
+
+  - name: social-proof
+    status: active
+    weight: 4
+    description: Testimonials from real clients — surface the 5.0 Vagaro rating publicly
+    delivers: "Trust signals that convert browsers to bookers"
+    for: "Someone on the fence about trying assisted stretching for the first time"
+    code:
+      - apps/web/src/components/public/Testimonials.tsx
+
+  - name: local-seo
+    status: active
+    weight: 5
+    description: SEO targeting 'assisted stretching Williamsville NY' and 'Buffalo NY'
+    delivers: "Chelsea shows up when potential clients search — currently invisible on Google"
+    for: "Anyone searching for stretching/mobility services in the Buffalo metro"
+    code:
+      - apps/web/src/app/(client-site)/layout.tsx
+      - apps/web/src/app/robots.ts
+      - apps/web/src/app/sitemap.ts
+
+  - name: location-access
+    status: active
+    weight: 3
+    description: Clear directions — inside Bel Viso Skin Studio, 2nd floor, 7158 Transit Rd
+    delivers: "Clients actually find her without calling to ask where the entrance is"
+    for: "First-time client who has never been to the building"
+    code:
+      - apps/web/src/components/public/Contact.tsx
+
+  # ============================================================
+  # CHELSEA'S DASHBOARD — what she sees
+  # ============================================================
 
   - name: ai-agent
     status: active
     weight: 5
-    description: AI chat agent that manages the custom site via natural language
-    delivers: "Instant content updates without waiting on Laney — change hours, add events, update copy by chatting"
-    for: "Chelsea (and future clients) who need quick changes to their custom site"
+    description: AI chat agent that manages Chelsea's custom site via natural language
+    delivers: "Instant content updates — change hours, add a testimonial, update prices by chatting"
+    for: "Chelsea when she needs a quick change and doesn't want to wait"
     code:
       - apps/web/src/app/api/agent/route.ts
       - apps/web/src/app/api/chat/route.ts
       - apps/web/src/app/api/activity/route.ts
-    depends_on: [infrastructure]
-
-  - name: client-site
-    status: active
-    weight: 4
-    description: Public-facing client website with CMS-driven content
-    delivers: "Professional business website with real content"
-    for: "Potential customers searching for the business"
-    code:
-      - apps/web/src/app/(client-site)/
-      - apps/web/src/components/public/
-      - apps/web/src/components/providers/
-      - apps/web/src/hooks/
-      - apps/web/src/lib/defaults.ts
+      - apps/web/src/components/dashboard/ChatPanel.tsx
 
   - name: dashboard
     status: active
     weight: 4
-    description: Client business OS dashboard with AI chat, overview, site preview
-    delivers: "At-a-glance business performance and one-tap content management"
-    for: "Business owner checking how their site is doing"
+    description: Business dashboard — site sections, activity feed, quick actions
+    delivers: "At-a-glance view of site status and one-tap content management"
+    for: "Chelsea checking on her site between appointments"
     code:
       - apps/web/src/app/dashboard/
       - apps/web/src/components/dashboard/
-    depends_on: [ai-agent]
+
+  # ============================================================
+  # REB MARKETING — what sells the product
+  # ============================================================
 
   - name: landing-page
     status: active
     weight: 3
-    description: REB Studio marketing page — sells the product
-    delivers: "Convincing pitch that converts visitors to signups"
+    description: REB Studio marketing page — sells custom sites + AI management
+    delivers: "Convincing pitch that converts Chelsea's network to signups"
     for: "Local business owner evaluating whether to sign up"
     code:
       - apps/marketing/src/app/page.tsx
       - apps/marketing/src/components/landing/
+
+  # ============================================================
+  # INFRASTRUCTURE — supports everything
+  # ============================================================
 
   - name: infrastructure
     status: active

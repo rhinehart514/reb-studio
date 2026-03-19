@@ -1,78 +1,109 @@
 # REB Studio — Mechanical Assertions
-# These are the regression safety net. If any fails, something is broken.
+# Aligned to Chelsea's actual features
 
 assertions:
 
-  # --- Infrastructure ---
-  - id: web-package
+  # --- Service Menu ---
+  - id: services-component
     type: file_check
-    path: apps/web/package.json
-    expect_contains: "@reb/web"
-    feature: infrastructure
-    description: "Web app package exists as @reb/web"
+    path: apps/web/src/components/public/Services.tsx
+    expect_contains: "booking_link"
+    feature: service-menu
+    description: "Services component renders booking links per service"
 
-  - id: marketing-package
-    type: file_check
-    path: apps/marketing/package.json
-    expect_contains: "@reb/marketing"
-    feature: landing-page
-    description: "Marketing app package exists as @reb/marketing"
-
-  - id: types-exist
+  - id: services-types
     type: file_check
     path: apps/web/src/lib/types.ts
-    expect_contains: "ContentSection"
-    feature: infrastructure
-    description: "Content type system exists with ContentSection union"
+    expect_contains: "ServiceItem"
+    feature: service-menu
+    description: "Service type includes name, price, duration, booking_link"
 
-  - id: schemas-exist
+  - id: services-defaults
     type: file_check
-    path: apps/web/src/lib/schemas.ts
-    expect_contains: "sectionSchemas"
-    feature: infrastructure
-    description: "Zod validation schemas exist for all sections"
+    path: apps/web/src/lib/defaults.ts
+    expect_contains: "defaultServices"
+    feature: service-menu
+    description: "Default services data exists"
 
-  - id: storage-dual-mode
+  # --- Booking Integration ---
+  - id: booking-component
     type: file_check
-    path: apps/web/src/lib/storage.ts
-    expect_contains: "REDIS_URL"
-    feature: infrastructure
-    description: "Storage layer supports Redis and dev-file fallback"
+    path: apps/web/src/components/public/Booking.tsx
+    feature: booking-integration
+    description: "Booking component exists for Vagaro integration"
 
-  - id: auth-jwt
+  - id: booking-cta
     type: file_check
-    path: apps/web/src/lib/auth.ts
-    expect_contains: "jwtVerify"
-    feature: infrastructure
-    description: "JWT auth with jose verification exists"
+    path: apps/web/src/components/public/Booking.tsx
+    expect_contains: "booking"
+    feature: booking-integration
+    description: "Booking component has booking link/CTA"
 
-  - id: middleware-protects-routes
+  # --- Founder Story ---
+  - id: story-component
     type: file_check
-    path: apps/web/src/middleware.ts
-    expect_contains: "/admin"
-    feature: infrastructure
-    description: "Middleware protects admin and dashboard routes"
+    path: apps/web/src/components/public/Story.tsx
+    expect_contains: "statement"
+    feature: founder-story
+    description: "Story component renders founder statement"
 
-  # --- Square Integration ---
-  - id: square-oauth
+  - id: story-stats
     type: file_check
-    path: apps/web/src/lib/square.ts
-    expect_contains: "getOAuthUrl"
-    feature: square-integration
-    description: "Square OAuth flow implemented"
+    path: apps/web/src/components/public/Story.tsx
+    expect_contains: "stats"
+    feature: founder-story
+    description: "Story shows credential stats (years experience, etc.)"
 
-  - id: square-sync
+  # --- Social Proof ---
+  - id: testimonials-component
     type: file_check
-    path: apps/web/src/lib/square.ts
-    expect_contains: "performSquareSync"
-    feature: square-integration
-    description: "Square data sync maps catalog to content sections"
+    path: apps/web/src/components/public/Testimonials.tsx
+    expect_contains: "quote"
+    feature: social-proof
+    description: "Testimonials component renders client quotes"
 
-  - id: square-webhook
+  # --- Local SEO ---
+  - id: seo-jsonld
     type: file_check
-    path: apps/web/src/app/api/square/webhook/route.ts
-    feature: square-integration
-    description: "Square webhook endpoint exists for auto-updates"
+    path: apps/web/src/app/(client-site)/layout.tsx
+    expect_contains: "LocalBusiness"
+    feature: local-seo
+    description: "JSON-LD LocalBusiness schema in site layout"
+
+  - id: seo-meta
+    type: file_check
+    path: apps/web/src/app/(client-site)/layout.tsx
+    expect_contains: "openGraph"
+    feature: local-seo
+    description: "OpenGraph metadata set from settings"
+
+  - id: seo-robots
+    type: file_check
+    path: apps/web/src/app/robots.ts
+    expect_contains: "sitemap"
+    feature: local-seo
+    description: "Robots.txt references sitemap"
+
+  - id: seo-sitemap
+    type: file_check
+    path: apps/web/src/app/sitemap.ts
+    feature: local-seo
+    description: "Sitemap.xml generated"
+
+  # --- Location/Access ---
+  - id: contact-component
+    type: file_check
+    path: apps/web/src/components/public/Contact.tsx
+    expect_contains: "address"
+    feature: location-access
+    description: "Contact component shows address"
+
+  - id: contact-map
+    type: file_check
+    path: apps/web/src/components/public/Contact.tsx
+    expect_contains: "googleMapsUrl"
+    feature: location-access
+    description: "Contact includes Google Maps embed"
 
   # --- AI Agent ---
   - id: agent-tools
@@ -89,32 +120,25 @@ assertions:
     feature: ai-agent
     description: "AI agent validates updates with Zod before writing"
 
-  - id: agent-array-guard
+  - id: agent-error-handling
     type: file_check
     path: apps/web/src/app/api/agent/route.ts
-    expect_contains: "oldLen"
+    expect_contains: "503"
     feature: ai-agent
-    description: "Array destructive operation guard prevents mass deletion"
+    description: "AI agent handles Gemini failures with user-friendly error"
+
+  - id: agent-personalized
+    type: file_check
+    path: apps/web/src/app/api/agent/route.ts
+    expect_contains: "businessName"
+    feature: ai-agent
+    description: "AI agent reads settings for personalized system prompt"
 
   - id: chat-persistence
     type: file_check
     path: apps/web/src/app/api/chat/route.ts
     feature: ai-agent
     description: "Chat history persistence endpoint exists"
-
-  # --- Onboarding ---
-  - id: onboarding-page
-    type: file_check
-    path: apps/web/src/app/get-started/page.tsx
-    feature: onboarding
-    description: "Onboarding page exists at /get-started"
-
-  - id: onboarding-chat
-    type: file_check
-    path: apps/web/src/components/onboarding/OnboardingChat.tsx
-    expect_contains: "/api/onboard"
-    feature: onboarding
-    description: "Onboarding chat component calls onboard API"
 
   # --- Dashboard ---
   - id: dashboard-overview
@@ -129,31 +153,17 @@ assertions:
     feature: dashboard
     description: "Dashboard chat page exists"
 
-  - id: dashboard-sidebar
+  - id: dashboard-content
     type: file_check
-    path: apps/web/src/components/dashboard/DashboardSidebar.tsx
+    path: apps/web/src/app/dashboard/content/page.tsx
     feature: dashboard
-    description: "Dashboard sidebar navigation exists"
+    description: "Content management page exists"
 
-  # --- Client Site ---
-  - id: client-site-layout
+  - id: dashboard-site-preview
     type: file_check
-    path: apps/web/src/app/(client-site)/layout.tsx
-    feature: client-site
-    description: "Client site layout with smooth scroll exists"
-
-  - id: client-site-sections
-    type: file_check
-    path: apps/web/src/components/public/Hero.tsx
-    feature: client-site
-    description: "Client site hero component exists"
-
-  - id: client-site-defaults
-    type: file_check
-    path: apps/web/src/lib/defaults.ts
-    expect_contains: "defaultHero"
-    feature: client-site
-    description: "Default content exists for all sections"
+    path: apps/web/src/app/dashboard/site/page.tsx
+    feature: dashboard
+    description: "Live site preview page exists"
 
   # --- Landing Page ---
   - id: landing-hero
@@ -163,6 +173,13 @@ assertions:
     feature: landing-page
     description: "Landing hero has the core value prop"
 
+  - id: landing-custom-message
+    type: file_check
+    path: apps/marketing/src/components/landing/HeroSection.tsx
+    expect_contains: "custom site"
+    feature: landing-page
+    description: "Landing page says 'custom site' not 'AI builds your site'"
+
   - id: landing-pricing
     type: file_check
     path: apps/marketing/src/components/landing/PricingSection.tsx
@@ -170,17 +187,59 @@ assertions:
     feature: landing-page
     description: "Landing page shows pricing"
 
-  # --- Monorepo Structure ---
+  # --- Infrastructure ---
+  - id: types-exist
+    type: file_check
+    path: apps/web/src/lib/types.ts
+    expect_contains: "ContentSection"
+    feature: infrastructure
+    description: "Content type system exists"
+
+  - id: schemas-zod
+    type: file_check
+    path: apps/web/src/lib/schemas.ts
+    expect_contains: "sectionSchemas"
+    feature: infrastructure
+    description: "Zod validation schemas for all sections"
+
+  - id: storage-dual-mode
+    type: file_check
+    path: apps/web/src/lib/storage.ts
+    expect_contains: "REDIS_URL"
+    feature: infrastructure
+    description: "Storage supports Redis and dev-file fallback"
+
+  - id: auth-jwt
+    type: file_check
+    path: apps/web/src/lib/auth.ts
+    expect_contains: "jwtVerify"
+    feature: infrastructure
+    description: "JWT auth with jose verification"
+
+  - id: middleware-protects
+    type: file_check
+    path: apps/web/src/middleware.ts
+    expect_contains: "/admin"
+    feature: infrastructure
+    description: "Middleware protects admin and dashboard routes"
+
+  - id: content-api-zod
+    type: file_check
+    path: apps/web/src/app/api/content/[section]/route.ts
+    expect_contains: "sectionSchemas"
+    feature: infrastructure
+    description: "Content API validates with Zod schemas"
+
   - id: monorepo-workspace
     type: file_check
     path: pnpm-workspace.yaml
     expect_contains: "apps/*"
     feature: infrastructure
-    description: "pnpm workspace configured for monorepo"
+    description: "pnpm workspace configured"
 
   - id: monorepo-turbo
     type: file_check
     path: turbo.json
     expect_contains: "build"
     feature: infrastructure
-    description: "Turborepo configured for parallel builds"
+    description: "Turborepo configured"
