@@ -1,0 +1,192 @@
+{
+  "analyzed_at": "2026-03-18T17:00:00Z",
+  "query": "REB Studio: Chelsea / Rohlax Wellness as first customer — honest assessment of direct vs indirect signal",
+  "signal_strength_overall": 18,
+  "evidence_quality": "indirect",
+  "note": "This assessment deliberately separates what is KNOWN from what is ASSUMED. Every score below reflects the actual evidence on hand, not what we hope is true.",
+
+  "themes": [
+    {
+      "theme": "Zero direct usage signal",
+      "signal_strength": "strong",
+      "evidence_type": "direct",
+      "sources": ["internal audit"],
+      "quotes": [
+        "Chelsea has not used the product. Chelsea has not seen the product. Chelsea has not paid. There is no usage data, no demo completion, no payment, no onboarding attempt. (task brief, 2026-03-18)"
+      ],
+      "feature_relevance": "all features",
+      "implications": "The product may be technically complete but there is zero validation that the customer can use it, wants it, or would pay for it. This is the single most important gap in the entire thesis."
+    },
+    {
+      "theme": "Chelsea has a real acquisition problem — but has she named it as a problem?",
+      "signal_strength": "moderate",
+      "evidence_type": "indirect",
+      "sources": ["Vagaro listing", "competitor analysis"],
+      "quotes": [
+        "Competitors in the wellness space universally have sites. Chelsea has LinkTree + Vagaro. No search presence. (market-context.json, 2026-03-18)",
+        "Chelsea is part-time (~20 hrs/week). She may be capacity-constrained by choice, not by lack of inbound. A full book might not require more clients."
+      ],
+      "feature_relevance": "public-site, seo, vagaro-integration",
+      "implications": "The problem is real in the abstract. Whether Chelsea EXPERIENCES it as a problem — whether she says 'I wish more people could find me online' — is unknown. If she's booked solid at 20hrs/week, the urgency disappears entirely."
+    },
+    {
+      "theme": "WTP at $199/mo is entirely untested for solo wellness practitioners at Chelsea's scale",
+      "signal_strength": "weak",
+      "evidence_type": "indirect",
+      "sources": ["market-context.json", "home-services-sales-research.json"],
+      "quotes": [
+        "Prior research showed wellness practitioners moderate WTP (6/10) at market level. (agent-memory/rhino-os-customer-intel.md)",
+        "Chelsea's pricing: $60-85/session. At 20hrs/week she likely grosses ~$4,000-5,000/month if fully booked. $199/mo is ~4-5% of gross. That's not outrageous — but she's part-time and possibly not fully booked.",
+        "The $49 first month promotional price exists, but there is no evidence Chelsea has seen or agreed to any price. (task brief)"
+      ],
+      "feature_relevance": "business model",
+      "implications": "The contractor ROI math (HVAC job = $7,500) does not transfer cleanly to a solo wellness practitioner earning $60-85/session. The ROI pitch needs to be: 'If we get you 3 new clients per month who each book 2 sessions at $70, that's $420/mo from a $199 investment.' This math works — but it is unverified."
+    },
+    {
+      "theme": "Chelsea's network is a real but unactivated asset",
+      "signal_strength": "moderate",
+      "evidence_type": "indirect",
+      "sources": ["CLAUDE.md", "Vagaro listing"],
+      "quotes": [
+        "Chelsea participates in Beauty Boost Buffalo — 8 provider directory contacts named. (CLAUDE.md)",
+        "Her Vagaro profile shows 5.0 rating. Real social proof exists but is gated behind Vagaro, not indexable."
+      ],
+      "feature_relevance": "provider-directory, vagaro-integration",
+      "implications": "The provider directory (8 providers across 5 categories) could be a referral moat — those 8 providers would send people to Chelsea's site. But this is only valuable if those providers know the site exists and Chelsea tells them. Unknown whether Chelsea has been told about this feature or whether she values it."
+    },
+    {
+      "theme": "The AI agent pitch may land differently for a wellness practitioner than a contractor",
+      "signal_strength": "weak",
+      "evidence_type": "indirect",
+      "sources": ["market-context.json", "home-services-sales-research.json"],
+      "quotes": [
+        "Contractor sales research: 'You don't touch anything. You tell the AI and it's done in 60 seconds.' Resonates because contractors actively hate admin work. (home-services-sales-research.json)",
+        "Chelsea's current tool is LinkTree — a setup-once-forget approach. She may have zero desire to update content ever, making the AI agent's value proposition invisible to her."
+      ],
+      "feature_relevance": "ai-agent, client-dashboard",
+      "implications": "The AI chat agent is built for a customer who wants to update their site. Chelsea may not have a site at all right now and may not have thought about content management as a pain point. The 'frictionless updates' pitch requires the customer to have experienced friction with updates first."
+    },
+    {
+      "theme": "SEO opportunity is real but has a 60-day lag minimum",
+      "signal_strength": "moderate",
+      "evidence_type": "indirect",
+      "sources": ["rhino.yml", "home-services-sales-research.json"],
+      "quotes": [
+        "Value signal: 'Any non-brand organic traffic within 60 days of domain connection' — explicitly flagged as measurable: false. (rhino.yml)",
+        "SEO case studies show results in 1-3 months for local service businesses. (home-services-sales-research.json)",
+        "Low competition for 'assisted stretching Williamsville NY' keyword cluster is a real advantage. (CLAUDE.md)"
+      ],
+      "feature_relevance": "seo, public-site",
+      "implications": "Even if Chelsea is sold and onboarded today, there is no measurable outcome for 60+ days. The 43% SMB churn rate in the first 90 days (from prior research) means she could churn before SEO produces any signal. The dashboard metrics have to carry the perceived value before organic traffic arrives."
+    }
+  ],
+
+  "unmet_needs": [
+    "Chelsea needs proof the site will get her MORE clients before she will pay — no proof mechanism exists before SEO kicks in at 60+ days",
+    "Chelsea likely needs an immediate value demonstration in the first session (dashboard showing site live, AI agent responding, Vagaro integration working) to justify the $49 first month",
+    "The referral value from the provider directory (8 providers) is unannounced and unactivated — Chelsea may not know this is part of the product",
+    "Ongoing relationship management: nobody has explained what happens after month 1. What does Chelsea do? What do we do? This is unknown territory for her"
+  ],
+
+  "churn_signals": [
+    "43% of SMB customers churn within 90 days when they don't see value — and the primary value signal (SEO/organic traffic) takes 60+ days to materialize",
+    "Chelsea is part-time. If she becomes fully booked at 20hrs/week before seeing SEO results, her motivation to continue drops sharply ('I don't need more clients right now')",
+    "If Chelsea never uses the AI chat agent (because LinkTree was set-and-forget), the dashboard becomes a vanity tool with declining check-in frequency",
+    "Month-to-month contract removes lock-in as a retention mechanism — Chelsea can leave at any time, so value must be visible every month"
+  ],
+
+  "demand_signals": [
+    "Absence of a website is an objective gap vs all identified competitors in the wellness space",
+    "Chelsea's 5.0 Vagaro rating suggests real customer satisfaction that could convert if made discoverable via search",
+    "Beauty Boost Buffalo network: if even 2-3 of her 8 provider contacts convert to REB clients, the referral model is validated",
+    "Prior research: 35% of SMB owners want AI + light review model for content management — but this is market data, not Chelsea data"
+  ],
+
+  "validation_gaps": [
+    {
+      "gap": "Has Chelsea ever said she wants more clients?",
+      "why_it_matters": "If she's capacity-constrained by choice (part-time, 20hrs), the entire value hypothesis collapses. She may not want to be fully booked.",
+      "how_to_validate": "Direct conversation. Ask: 'If you had 5 more clients per month, what would you do differently?'"
+    },
+    {
+      "gap": "Has Chelsea seen the dashboard and AI agent?",
+      "why_it_matters": "The product exists but no demo has happened. We don't know if she finds it valuable, confusing, or impressive.",
+      "how_to_validate": "Demo session. Walk her through: dashboard overview → AI chat ('update my Sunday hours') → site preview. Measure her reaction."
+    },
+    {
+      "gap": "Would Chelsea pay $199/mo?",
+      "why_it_matters": "No pricing conversation has happened. $199/mo is 4-5% of a fully-booked monthly gross — reasonable in principle, but untested.",
+      "how_to_validate": "After demo, ask: 'What would this need to do for you to feel like $199/mo was worth it?' Listen for the answer — don't pitch."
+    },
+    {
+      "gap": "Does Chelsea understand that Vagaro hides her from Google?",
+      "why_it_matters": "The core pitch is 'your reviews and services are invisible to search.' If she doesn't experience this as a problem, the pitch doesn't land.",
+      "how_to_validate": "Live audit. Google 'assisted stretching Williamsville NY' in front of her. Show her: nothing shows up for her. Show a competitor. Let the gap sell itself."
+    },
+    {
+      "gap": "Does the Beauty Boost Buffalo network refer to each other?",
+      "why_it_matters": "The provider directory feature assumes Chelsea's network has referral behavior. If they don't actively refer, the directory is a nice-to-have, not a stickiness driver.",
+      "how_to_validate": "Ask Chelsea: 'Do clients ever ask you to recommend other wellness providers?' Yes = referral behavior exists. Build on it."
+    }
+  ],
+
+  "risks": [
+    {
+      "risk": "Chelsea doesn't want more clients",
+      "severity": "kill-shot",
+      "probability": "unknown — never asked",
+      "mitigation": "Ask directly before building more features for this customer segment"
+    },
+    {
+      "risk": "Chelsea churns before SEO produces any measurable outcome (60+ day lag)",
+      "severity": "high",
+      "probability": "43% base rate for SMB in first 90 days",
+      "mitigation": "The dashboard must show something valuable before organic traffic arrives. Vagaro click tracking, visitor count, AI interaction history — these need to feel like value, not empty charts."
+    },
+    {
+      "risk": "$199/mo is too high for a solo part-time practitioner with a small book of business",
+      "severity": "high",
+      "probability": "unknown — never tested with wellness practitioners specifically",
+      "mitigation": "The $49 first month reduces initial friction. But month 2 reality at $199 with no visible ROI = churn."
+    },
+    {
+      "risk": "The demo doesn't happen — paralysis by perfectionism on the product side",
+      "severity": "high",
+      "probability": "elevated — no demo scheduled as of this analysis",
+      "mitigation": "Demo the product that exists NOW. A working site with AI agent and dashboard is more than enough to sell."
+    },
+    {
+      "risk": "Wellness segment has lower ROI math than home services — harder to justify $199/mo",
+      "severity": "moderate",
+      "probability": "high — $70/session vs $1,500 HVAC job means the arithmetic is much tighter",
+      "mitigation": "Build the Chelsea-specific ROI pitch: '3 new clients/mo × 2 sessions × $70 = $420/mo from $199 investment.' This is the pitch, not the contractor math."
+    },
+    {
+      "risk": "Chelsea's network (Beauty Boost Buffalo) doesn't convert to paying REB clients",
+      "severity": "moderate",
+      "probability": "unknown",
+      "mitigation": "Don't count on network referrals until Chelsea herself is a happy paying customer who actively recommends REB unprompted"
+    }
+  ],
+
+  "person_refinement": "Chelsea is not yet validated as a customer. She is a hypothesis. The ICP definition in CLAUDE.md ('wellness practitioners, has a bad website, wants more clients') is market-research-derived, not behavior-derived. The critical refinement needed: Chelsea must be asked two questions before further product investment — (1) Do you want more clients, and (2) Would you pay to get them digitally? Her answers reshape everything. The current product is built for a customer who WANTS clients and WILL update content via AI. Both assumptions are unverified.",
+
+  "recommendation": {
+    "priority": "get the demo done before building anything else",
+    "specific_action": "Schedule a 30-minute demo session with Chelsea. Google 'assisted stretching Williamsville NY' together. Show the live site. Let her try the AI chat agent. Ask what would make $199/mo obviously worth it. Do not pitch — listen.",
+    "what_to_watch": "Does she say 'I want more clients'? Does she use the AI agent without prompting? Does she ask about price unprompted? These are the buying signals. Absence of them is signal too.",
+    "what_not_to_do": "Do not build more features for Chelsea until she has been demoed and has expressed WTP. The product already has everything needed to validate the core hypothesis. More features do not fix a missing customer conversation.",
+    "confidence_in_recommendation": "high — this is the bottleneck. Not product quality."
+  },
+
+  "gaps": [
+    "Zero demo data — Chelsea has never seen the product",
+    "Zero WTP data — no pricing conversation has happened",
+    "Booking capacity unknown — Chelsea may be at capacity and not need more clients",
+    "Referral behavior of Beauty Boost Buffalo network is unobserved",
+    "Whether Chelsea experiences Vagaro-as-SEO-block as a felt problem — unknown",
+    "Whether wellness practitioners talk to each other the way contractors do (supply house, trade network) — affects distribution strategy",
+    "Whether the $49 first month reduces friction enough to get past initial objections — untested",
+    "Whether the dashboard's current metrics (visitors, booking clicks, site health) read as valuable to a non-technical practitioner — untested"
+  ]
+}

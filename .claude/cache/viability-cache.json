@@ -1,0 +1,396 @@
+{
+  "assessed_at": "2026-03-18T00:00:00Z",
+  "assessor": "market-analyst",
+  "product": "REB Studio — productized AI web agency",
+  "client": "Chelsea / Rohlax Wellness (solo assisted stretching, Williamsville NY)",
+  "methodology": "0-100 viability score per feature. UVP clarity (0-25) + Competitive gap (0-25) + Demand signal (0-25) + Positioning (0-25). Hard caps: no external validation = max 30, >50 requires market data, >75 requires market data + customer signal.",
+
+  "market_context": {
+    "direct_competitors_to_chelsea": [
+      {
+        "name": "StretchLab Northtowns",
+        "type": "franchise",
+        "address": "8214 Transit Rd, Amherst NY 14221",
+        "website": "stretchlab.com/location/northtowns",
+        "quality": "Professional franchise site. 13 flexologists, clear CTAs, membership model, $59 intro offer. Full SEO, Google Maps, staff bios.",
+        "threat_level": "high — same road (Transit Rd), same service, franchise marketing budget"
+      },
+      {
+        "name": "Stretchd Out Buffalo",
+        "type": "indie",
+        "address": "3171 Delaware Ave, Kenmore NY 14217",
+        "website": "stretchdoutbuffalo.org (Squarespace)",
+        "quality": "Polished Squarespace site. Multiple modalities (stretch + massage + chiro + recovery room). 14+ reviews. Indigenous women-owned positioning.",
+        "threat_level": "medium — different location, broader service mix"
+      },
+      {
+        "name": "Spa 400",
+        "type": "spa",
+        "website": "spa400.com",
+        "quality": "Has dedicated assisted stretching page. $65/session listed. Part of larger spa.",
+        "threat_level": "low — different positioning (spa add-on vs dedicated practice)"
+      },
+      {
+        "name": "Universal Wellness Buffalo",
+        "type": "indie",
+        "website": "universalwellnessbuffalo.com",
+        "quality": "Has assisted stretching + red light + salt therapy page.",
+        "threat_level": "low — multi-modality, different audience"
+      }
+    ],
+    "platform_competitors": {
+      "vagaro": "$25-85/mo base + $20/mo MySite add-on. Auto-syncs services/prices. Chelsea already on Vagaro with 5.0 rating.",
+      "glossgenius": "$24-148/mo. 100+ features. Custom booking site included. 2.6% processing. Strong wellness positioning.",
+      "squarespace": "$23-33/mo. Blueprint AI builder. Beacon AI assistant. SEO built in. No booking native (needs integration).",
+      "wix": "$17-36/mo. Harmony AI builder with Aria agent. Native booking, payments, marketing. Most complete ecosystem.",
+      "durable": "$15-80/mo. 30-second AI generation. CRM + invoicing included. Best for solopreneurs.",
+      "b12": "$0-399/mo. AI builder + human design team. Client engagement tools. Closest to REB's hybrid model."
+    },
+    "key_market_facts": {
+      "wellness_conversion_rate": "Healthcare/wellness median conversion: 3.6%, average 7.4%",
+      "smb_churn": "3-7% monthly for SMB SaaS. 43% of losses in first 90 days. Retainer agencies: 18% annual churn.",
+      "chelsea_current_state": "LinkTree → Vagaro. 5.0 rating, 8 services. No website. No Google presence for 'assisted stretching Williamsville NY'. Part-time ~20hrs/week.",
+      "stretchlab_presence": "Franchise competitor on same road (Transit Rd) with professional site, 13 staff, $59 intro offer, full SEO. This is the real competitive threat.",
+      "ai_website_management_2026": "Wix Harmony (Aria agent), Squarespace (Beacon AI), Hostinger, Durable, B12 ALL have AI content management. This is table stakes, not a differentiator."
+    }
+  },
+
+  "features": [
+    {
+      "id": "service-menu",
+      "weight": 5,
+      "claim": "Potential clients see what Chelsea offers and book instantly",
+      "viability_score": 42,
+      "dimensions": {
+        "uvp_clarity": 12,
+        "competitive_gap": 8,
+        "demand_signal": 14,
+        "positioning": 8
+      },
+      "evidence": {
+        "for": [
+          "Chelsea's Vagaro page doesn't render service menu in search results — only visible after clicking through",
+          "Healthcare/wellness sites average 7.4% visitor-to-booking conversion with service-specific landing pages (Unbounce benchmark)",
+          "StretchLab Northtowns has full service menu with pricing on their site — Chelsea has zero web-searchable service info",
+          "Spa 400 lists $65/session on their site — price transparency is table stakes in this market"
+        ],
+        "against": [
+          "Vagaro already hosts her full service menu with real-time availability — this duplicates it",
+          "Service data was scraped once from Vagaro and will go stale. No sync mechanism exists.",
+          "GlossGenius, Vagaro MySite ($20/mo), and Squarespace all auto-sync services from booking platforms",
+          "Zero evidence Chelsea's lack of a service page is costing her bookings — she may be at capacity already at 20hrs/week"
+        ]
+      },
+      "hard_cap_applied": "No user validation (Chelsea hasn't seen or used the product). Capped below 50.",
+      "verdict": "Table stakes feature with a data freshness problem. The service menu exists on Vagaro already. REB's version adds SEO discoverability but creates a stale-data liability. Score reflects real demand for service visibility but zero proof Chelsea needs more bookings or that this drives them."
+    },
+    {
+      "id": "booking-integration",
+      "weight": 5,
+      "claim": "One-click booking without friction",
+      "viability_score": 35,
+      "dimensions": {
+        "uvp_clarity": 8,
+        "competitive_gap": 5,
+        "demand_signal": 14,
+        "positioning": 8
+      },
+      "evidence": {
+        "for": [
+          "External booking links (Vagaro) are industry standard — Stretchd Out Buffalo, Spa 400, Universal Wellness all link to Vagaro/Fresha",
+          "Healthcare/wellness median conversion 3.6% — reducing clicks from search-to-book has measurable impact",
+          "Chelsea's current path: Google → nothing (no site) → must find Vagaro listing → book. Adding a site shortens this IF the site ranks."
+        ],
+        "against": [
+          "This is literally a hyperlink to Vagaro. Every competitor does this. GlossGenius and Vagaro MySite have NATIVE booking — no redirect.",
+          "Vagaro MySite ($20/mo add-on) auto-syncs booking directly into the site — no stale data, no external redirect",
+          "GlossGenius ($24/mo) includes integrated booking site as core feature — not an add-on",
+          "'One-click booking' is a commodity. Wix, Squarespace, every booking platform offers this.",
+          "Chelsea hasn't reported booking friction as a problem. She may get all clients through word-of-mouth."
+        ]
+      },
+      "hard_cap_applied": "No user validation. Feature is a commodity link, not a product. Capped below 50.",
+      "verdict": "A hyperlink to Vagaro is not a feature — it's the minimum. Every competitor from StretchLab's franchise site to Stretchd Out's Squarespace site does this. The real question is whether Chelsea needs MORE bookings (part-time, possibly at capacity) and whether a website drives them vs. word-of-mouth. Zero evidence on either."
+    },
+    {
+      "id": "ai-agent",
+      "weight": 5,
+      "claim": "Instant content updates by chatting",
+      "viability_score": 22,
+      "dimensions": {
+        "uvp_clarity": 8,
+        "competitive_gap": 3,
+        "demand_signal": 5,
+        "positioning": 6
+      },
+      "evidence": {
+        "for": [
+          "The productized agency model (Laney builds, AI maintains) is genuinely different from DIY builders",
+          "B12 ($49-399/mo) proves demand for human-built + AI-maintained sites",
+          "Agency turnaround (24-48hr) is a real pain point — instant AI response would be faster"
+        ],
+        "against": [
+          "Wix Harmony's Aria agent (2026) does natural language site editing. Squarespace Beacon is a 24/7 AI business assistant. These are FREE with $17-29/mo plans.",
+          "Durable ($15-80/mo) has AI assistant that understands business context and makes changes",
+          "Chelsea is part-time (~20hrs/week). How often does a part-time solo practitioner need to update their website? Monthly? Quarterly? This solves a problem that barely exists for the ICP.",
+          "The AI agent requires Chelsea to learn a new interface. She currently does zero web management. The step from 'zero' to 'chat with AI' is still a step.",
+          "Chat persistence isn't wired up. System prompt is hardcoded. Error handling is missing. The feature is incomplete.",
+          "CRITICAL: 'AI-managed website' is not a differentiator in 2026. Every major builder has this."
+        ]
+      },
+      "hard_cap_applied": "No user validation. AI content management is commoditized. Chelsea's update frequency is unknown but likely very low for a part-time solo practitioner. Capped at 30, scored 22 for incomplete implementation.",
+      "verdict": "The biggest risk in the product. The core value proposition — 'AI agent manages your site' — is now table stakes across Wix, Squarespace, Durable, and B12. The differentiation is supposed to be 'custom-built quality + AI management' but Chelsea hasn't seen the product, update frequency for a part-time solo practitioner is likely near-zero, and the feature itself is incomplete (no persistence, hardcoded prompts, no error handling)."
+    },
+    {
+      "id": "local-seo",
+      "weight": 5,
+      "claim": "Chelsea shows up on Google for 'assisted stretching Williamsville NY'",
+      "viability_score": 48,
+      "dimensions": {
+        "uvp_clarity": 15,
+        "competitive_gap": 10,
+        "demand_signal": 15,
+        "positioning": 8
+      },
+      "evidence": {
+        "for": [
+          "VERIFIED: Searching 'assisted stretching Williamsville NY' returns StretchLab, Stretchd Out Buffalo, Spa 400, Universal Wellness — Rohlax Wellness does NOT appear",
+          "Chelsea has ZERO web presence beyond Vagaro listing and LinkTree. No indexable site.",
+          "StretchLab Northtowns (same Transit Rd corridor, 14221 zip code) has full SEO and ranks #1",
+          "JSON-LD LocalBusiness schema + geo-targeted meta tags are proven local ranking signals",
+          "77% of consumers search online before visiting a local business (BrightLocal)",
+          "Vagaro listings rank but below dedicated sites — a proper site would outrank the Vagaro page"
+        ],
+        "against": [
+          "Squarespace, Wix, and even Vagaro MySite all generate JSON-LD and sitemaps automatically",
+          "SEO takes 3-6 months to show results. Chelsea won't see Google traffic in week 1.",
+          "The JSON-LD is currently hardcoded, not dynamic from CMS data. Sitemap and robots.txt are todos, not shipped.",
+          "Google Business Profile (free) would deliver faster local search results than a website",
+          "Chelsea is part-time. If SEO succeeds and drives 50 visitors/week, can she serve them? At 20hrs/week capacity, SEO success could be a liability.",
+          "No Google Business Profile setup is in the plan — this is the #1 local SEO lever and it's missing"
+        ]
+      },
+      "hard_cap_applied": "Market data supports demand (verified search gap). But no user validation, implementation incomplete, and Google Business Profile (free, faster) isn't in the plan. Capped below 50.",
+      "verdict": "The strongest case in the product — there is a verified, observable gap where Chelsea doesn't appear in local search results and her franchise competitor does. But the implementation is incomplete (hardcoded JSON-LD, missing GBP), takes months to show results, and cheaper/faster alternatives exist (Vagaro MySite $20/mo with auto-SEO, or free Google Business Profile). Score reflects real market gap but unproven execution."
+    },
+    {
+      "id": "founder-story",
+      "weight": 4,
+      "claim": "Trust differentiator vs franchise studios",
+      "viability_score": 28,
+      "dimensions": {
+        "uvp_clarity": 10,
+        "competitive_gap": 8,
+        "demand_signal": 5,
+        "positioning": 5
+      },
+      "evidence": {
+        "for": [
+          "StretchLab is a franchise — 'meet your flexologist' is generic. Chelsea's PT background + burnout pivot is genuinely unique.",
+          "Stretchd Out Buffalo leads with founder identity (Indigenous, women-owned) — founder stories work in wellness",
+          "Solo practitioners competing against franchises need trust signals. Personal story is the only thing a franchise can't replicate.",
+          "Chelsea's 5.0 Vagaro rating (perfect score) suggests clients love her — the story would reinforce this"
+        ],
+        "against": [
+          "Zero evidence this story converts browsers to bookers. It's a nice-to-have, not a booking driver.",
+          "The story exists on the site but no one has seen it. Chelsea hasn't reviewed it for accuracy.",
+          "Founder stories are standard on every wellness practitioner's site — Stretchd Out has one, Spa 400 has one. Not unique.",
+          "Vagaro profile already mentions healthcare background. This duplicates existing content."
+        ]
+      },
+      "hard_cap_applied": "No external validation. Content not reviewed by Chelsea. Capped at 30.",
+      "verdict": "Defensible positioning against StretchLab franchise but zero evidence it drives bookings. Every indie practitioner has an 'about me' page. Without Chelsea's review of the content, it might not even be accurate."
+    },
+    {
+      "id": "social-proof",
+      "weight": 4,
+      "claim": "Trust signals that convert browsers",
+      "viability_score": 15,
+      "dimensions": {
+        "uvp_clarity": 5,
+        "competitive_gap": 2,
+        "demand_signal": 5,
+        "positioning": 3
+      },
+      "evidence": {
+        "for": [
+          "Social proof increases conversion rates — well-established in conversion optimization literature",
+          "Chelsea has 5.0 on Vagaro with real reviews — the raw material exists",
+          "StretchLab and Stretchd Out both feature testimonials prominently"
+        ],
+        "against": [
+          "The section is EMPTY. Zero testimonials populated. This is a blank page, not a feature.",
+          "Chelsea's Vagaro reviews are already public and more credible (verified purchase) than site testimonials",
+          "Google Reviews (free) carry more weight than website testimonials for local search",
+          "Populating testimonials requires Chelsea's involvement — she hasn't been contacted about this",
+          "An empty testimonials section is WORSE than no section — it signals 'new/unproven business'"
+        ]
+      },
+      "hard_cap_applied": "Feature is literally empty. No content. No user involvement. Capped well below 30.",
+      "verdict": "An empty testimonials section actively hurts credibility. Chelsea's Vagaro reviews are more trustworthy and already visible. This feature needs content before it has any viability, and getting that content requires Chelsea's participation, which hasn't happened."
+    },
+    {
+      "id": "dashboard",
+      "weight": 4,
+      "claim": "At-a-glance site management",
+      "viability_score": 18,
+      "dimensions": {
+        "uvp_clarity": 6,
+        "competitive_gap": 4,
+        "demand_signal": 3,
+        "positioning": 5
+      },
+      "evidence": {
+        "for": [
+          "The dashboard looks premium — Framer-quality dark mode design",
+          "Inline editing + AI chat + site preview in one place is a legitimate UX improvement over separate tools",
+          "B12's dashboard model ($49-399/mo) proves some businesses want a managed dashboard experience"
+        ],
+        "against": [
+          "Dashboard shows FAKE metrics — hardcoded '127 visitors, 23 clicks, +12%'. This is dishonest and will destroy trust if Chelsea sees it.",
+          "Activity feed is hardcoded fake data. Same problem.",
+          "Chelsea currently manages NOTHING about her web presence. Going from 0 to 'premium dashboard' is a huge cognitive leap.",
+          "GlossGenius ($24/mo) and Vagaro ($25/mo) both have dashboards with REAL data — real bookings, real revenue, real clients. REB's dashboard has fake data.",
+          "The ICP described in CLAUDE.md says 'Will never log into a traditional CMS after month 1' — why build a premium dashboard for someone who won't use it?",
+          "No analytics integration means no real metrics. The 'proof of value' that the value hypothesis requires doesn't exist yet."
+        ]
+      },
+      "hard_cap_applied": "No user validation. Shows fake metrics. The product's own ICP doc says the user won't log in. Capped well below 30.",
+      "verdict": "The dashboard is beautiful and dishonest. Fake metrics ('127 visitors') will destroy trust instantly if Chelsea ever sees them. The product's own documentation says the ICP 'will never log into a traditional CMS after month 1' — so the dashboard is built for a user who won't use it, populated with data that isn't real. This is the most dangerous feature in the product because it looks good in demos and fails in production."
+    },
+    {
+      "id": "landing-page",
+      "weight": 3,
+      "claim": "Converts Chelsea's network to signups",
+      "viability_score": 20,
+      "dimensions": {
+        "uvp_clarity": 6,
+        "competitive_gap": 4,
+        "demand_signal": 5,
+        "positioning": 5
+      },
+      "evidence": {
+        "for": [
+          "Chelsea reportedly has 8 provider directory contacts — a landing page is needed to sell them",
+          "The productized agency model needs a sales page eventually",
+          "180Sites (comparable agency) scaled to 500 clients — they had a sales presence"
+        ],
+        "against": [
+          "Chelsea hasn't validated the product yet. Selling to her network before proving value with client #1 is premature.",
+          "The 8 contacts are better sold through personal intro + demo than a landing page",
+          "At this stage, a Notion page or Loom video converts better than a polished marketing site",
+          "Building a marketing site before having a single testimonial or case study means no social proof",
+          "The landing page has no CTA destination — no Calendly, no contact form, no Stripe checkout",
+          "Time spent on the landing page is time not spent validating with Chelsea"
+        ]
+      },
+      "hard_cap_applied": "No external validation. Premature — product not validated with client #1 yet. Capped below 30.",
+      "verdict": "Premature. You don't build a sales page before you have a single paying client who can vouch for the product. Chelsea's 8 contacts are better reached through personal intro, not a website. Every hour on this is an hour not spent getting Chelsea to actually use the product."
+    },
+    {
+      "id": "location-access",
+      "weight": 3,
+      "claim": "Clients find her — directions to 2nd floor of Bel Viso Skin Studio",
+      "viability_score": 38,
+      "dimensions": {
+        "uvp_clarity": 10,
+        "competitive_gap": 8,
+        "demand_signal": 12,
+        "positioning": 8
+      },
+      "evidence": {
+        "for": [
+          "VERIFIED: Chelsea is inside Bel Viso Skin Studio, 2nd floor. This is genuinely hard to find.",
+          "7158 Transit Rd is a commercial strip — not a standalone storefront. Wayfinding matters.",
+          "Vagaro listing says 'parking behind building' — implies it's not obvious from the street",
+          "StretchLab Northtowns is on the SAME road (Transit Rd) at 8214 — a mile away with better signage",
+          "Google Maps may point to Bel Viso, not Rohlax. Clear directions solve a real problem.",
+          "Every local competitor has clear location info — this is hygiene"
+        ],
+        "against": [
+          "Google Maps embedded on any $0 Google Business Profile solves this",
+          "Chelsea could add directions to her Vagaro listing or LinkTree bio for free",
+          "Clients who book through Vagaro already get the address — the problem is pre-booking discovery, not navigation"
+        ]
+      },
+      "hard_cap_applied": "Market data supports wayfinding need (verified hard-to-find location). No user validation that this is causing lost bookings. Below 50.",
+      "verdict": "Solves a real, observable problem — Chelsea's location is genuinely hard to find (2nd floor inside another business). But this can be solved for $0 with a Google Business Profile or updated Vagaro listing. Worth having on a website, but not worth building a website for."
+    },
+    {
+      "id": "infrastructure",
+      "weight": 2,
+      "claim": "Auth, storage, types, API foundation",
+      "viability_score": 25,
+      "dimensions": {
+        "uvp_clarity": 5,
+        "competitive_gap": 5,
+        "demand_signal": 5,
+        "positioning": 10
+      },
+      "evidence": {
+        "for": [
+          "Next.js 15 + TypeScript + Redis + JWT is a solid technical foundation",
+          "Typed content schemas (8 sections with Zod validation) is better than most agency code",
+          "REST API for content CRUD enables the AI agent architecture",
+          "The infrastructure enables multi-tenant scaling — each new client is config, not code"
+        ],
+        "against": [
+          "Infrastructure has no standalone viability — it enables other features that haven't been validated",
+          "The same architecture could be built with Payload CMS, Sanity, or any headless CMS in a fraction of the time",
+          "Custom infrastructure is a liability for a solo founder — every bug is your bug",
+          "Vercel + Redis + Blob storage COGS are real but unmeasured against the $199/mo price point"
+        ]
+      },
+      "hard_cap_applied": "Infrastructure doesn't face the market. Scored on enabling potential only.",
+      "verdict": "Solid engineering, wrong question. Infrastructure viability depends entirely on whether the features it enables are viable. Well-built foundation for a product that hasn't proven anyone wants it."
+    }
+  ],
+
+  "summary": {
+    "overall_viability": 27,
+    "weighted_viability": 28,
+    "calculation": "sum(score * weight) / sum(weight * 100) = (42*5 + 35*5 + 22*5 + 48*5 + 28*4 + 15*4 + 18*4 + 20*3 + 38*3 + 25*2) / (5*100 + 5*100 + 5*100 + 5*100 + 4*100 + 4*100 + 4*100 + 3*100 + 3*100 + 2*100) = 1121 / 4000 = 28%",
+    "top_feature": "local-seo (48) — only feature with verified market gap",
+    "worst_feature": "social-proof (15) — literally empty",
+    "critical_risks": [
+      "The core differentiator (AI agent) is commoditized. Wix, Squarespace, Durable, B12 all have AI content management in 2026.",
+      "Dashboard shows fake metrics. This will destroy trust with the first client who sees real numbers.",
+      "Chelsea hasn't seen or used the product. Zero user validation. Every score is theoretical.",
+      "Chelsea is part-time (~20hrs/week). If the product succeeds at driving bookings, she may not have capacity. If it doesn't drive bookings, the $199/mo is pure cost for a part-time practitioner.",
+      "StretchLab franchise (same road, 1 mile away) has professional site + 13 staff + SEO + booking. REB competes with franchise marketing budget.",
+      "Google Business Profile (free) would deliver more local search value faster than a $199/mo custom site.",
+      "The value hypothesis requires 'visible proof of value within first week' but analytics aren't integrated. The dashboard can't show proof because there's no data pipeline."
+    ],
+    "what_would_change_scores": [
+      "Chelsea uses the product unprompted → all scores +15-25",
+      "Chelsea reports getting a new client through the site → service-menu and local-seo jump to 65+",
+      "Site ranks on page 1 for 'assisted stretching Williamsville NY' → local-seo jumps to 70+",
+      "Chelsea prefers AI chat over Vagaro admin → ai-agent jumps to 50+",
+      "Dashboard shows real metrics from actual traffic → dashboard jumps to 45+",
+      "Second client from Chelsea's network signs up → landing-page jumps to 45+"
+    ]
+  },
+
+  "market_position_assessment": {
+    "table_stakes_everyone_has": [
+      "Service menu with prices",
+      "Online booking (native or linked)",
+      "Mobile-responsive design",
+      "Basic SEO (meta tags, structured data)",
+      "AI content editing (Wix Aria, Squarespace Beacon, Durable AI, B12)",
+      "Location/maps/directions",
+      "Testimonials section"
+    ],
+    "differentiated_1_or_2_have": [
+      "Human-built custom design + AI maintenance (B12 at $49-399/mo is closest)",
+      "Dashboard with business metrics in outcome language ('people who found you' vs 'unique visitors')",
+      "Slack notification pipeline for founder oversight of AI changes"
+    ],
+    "opportunities_nobody_does": [
+      "Proactive AI that suggests content based on seasonality/staleness (in backlog, not built)",
+      "AI that can pull from booking platform data to optimize site content",
+      "Weekly plain-English performance reports that feel like a text from your marketing person"
+    ],
+    "reb_positioning": "REB sits in the gap between $20-80/mo DIY builders and $3,000-10,000/mo agencies. B12 ($49-399/mo) is the closest comparable. The gap exists but the question is whether Chelsea — part-time, low-volume, possibly at capacity — is the right customer to prove it."
+  }
+}
