@@ -245,17 +245,16 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* CTA */}
+      {/* Edit link */}
       <div className="mt-6 bg-[#141414] border border-[#262626] rounded-lg px-5 py-4 flex items-center justify-between">
         <p className="text-sm text-zinc-400">
-          To change settings, use the AI Chat
+          Edit your site settings directly
         </p>
         <Link
-          href="/dashboard/chat"
+          href="/dashboard/content/edit?section=settings"
           className="flex items-center gap-1.5 px-3 py-2 rounded-md bg-violet-600 hover:bg-violet-500 text-xs text-white transition-colors duration-150"
         >
-          <MessageCircle className="w-3.5 h-3.5" />
-          Open Chat
+          Edit Settings
         </Link>
       </div>
     </div>

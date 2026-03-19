@@ -8,6 +8,7 @@ import {
   Users,
   Phone,
   Settings,
+  Pencil,
 } from "lucide-react";
 import { getContent } from "@/lib/storage";
 
@@ -17,7 +18,7 @@ const SECTION_META = [
   { id: "story" as const, name: "About", icon: BookOpen },
   { id: "testimonials" as const, name: "Testimonials", icon: Star },
   { id: "events" as const, name: "Events", icon: Calendar },
-  { id: "providers" as const, name: "Providers", icon: Users },
+  { id: "providers" as const, name: "Partners", icon: Users },
   { id: "contact" as const, name: "Contact", icon: Phone },
   { id: "settings" as const, name: "Settings", icon: Settings },
 ];
@@ -46,18 +47,17 @@ export default async function ContentPage() {
     testimonials: `${testimonials.testimonials.length} reviews`,
     events: `${events.events.length} upcoming`,
     providers: `${providers.providers.length} providers`,
-    contact: contact.phone,
+    contact: contact.phone || contact.email || "Add contact info",
     settings: settings.siteName,
   };
 
-  // No hardcoded timestamps — show section status instead
   const itemCounts: Record<string, string> = {
     hero: hero.headline ? "Published" : "Draft",
     services: `${services.services.length} listed`,
     story: "Published",
-    testimonials: `${testimonials.testimonials.length} reviews`,
-    events: `${events.events.length} listed`,
-    providers: `${providers.providers.length} listed`,
+    testimonials: testimonials.testimonials.length > 0 ? `${testimonials.testimonials.length} reviews` : "No reviews yet",
+    events: events.events.length > 0 ? `${events.events.length} listed` : "No events",
+    providers: providers.providers.length > 0 ? `${providers.providers.length} listed` : "None yet",
     contact: contact.phone ? "Published" : "Needs info",
     settings: "Configured",
   };
@@ -73,7 +73,7 @@ export default async function ContentPage() {
           Your site sections
         </h1>
         <p className="text-sm text-zinc-400 mt-1">
-          Tap any section to update it with AI.
+          Tap any section to edit it directly.
         </p>
       </div>
 
@@ -81,7 +81,7 @@ export default async function ContentPage() {
         {SECTION_META.map((section) => (
           <Link
             key={section.id}
-            href={`/dashboard/chat?intent=update+${section.id}`}
+            href={`/dashboard/content/edit?section=${section.id}`}
             className="group relative overflow-hidden bg-[#141414] border border-[#262626] rounded-lg p-4 hover:border-[#333] hover:border-l-2 hover:border-l-violet-600 transition-all duration-150"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-violet-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
@@ -90,9 +90,12 @@ export default async function ContentPage() {
                 <section.icon className="w-4 h-4 text-violet-400" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="text-sm font-semibold text-white">
-                  {section.name}
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-semibold text-white">
+                    {section.name}
+                  </h3>
+                  <Pencil className="w-3 h-3 text-zinc-600 group-hover:text-violet-400 transition-colors duration-150" />
+                </div>
                 <p className="font-mono text-xs text-zinc-500 mt-1">
                   {previews[section.id]}
                 </p>
