@@ -1,4 +1,4 @@
-import Link from "next/link";
+const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
 
 export default function HeroSection() {
   return (
@@ -27,18 +27,18 @@ export default function HeroSection() {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-start gap-3">
-            <Link
-              href="/get-started"
+            <a
+              href={`${webUrl}/get-started`}
               className="w-full sm:w-auto text-center bg-violet-600 hover:bg-violet-500 text-white font-medium px-8 py-3.5 rounded transition-colors text-sm tracking-wide"
             >
               Connect Square
-            </Link>
-            <Link
-              href="/get-started"
+            </a>
+            <a
+              href={`${webUrl}/get-started`}
               className="w-full sm:w-auto text-center border border-zinc-800 hover:border-zinc-600 text-zinc-400 hover:text-zinc-200 font-medium px-8 py-3.5 rounded transition-colors text-sm tracking-wide"
             >
               Tell us about your business
-            </Link>
+            </a>
           </div>
         </div>
       </div>

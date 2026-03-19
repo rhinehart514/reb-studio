@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const steps = [
   {
     num: "01",
@@ -17,6 +15,8 @@ const steps = [
     detail: "SEO, content updates, Square sync — handled. You focus on your business.",
   },
 ];
+
+const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
 
 export default function HowItWorks() {
   return (
@@ -53,12 +53,12 @@ export default function HowItWorks() {
         </div>
 
         <div className="mt-12">
-          <Link
-            href="/get-started"
+          <a
+            href={`${webUrl}/get-started`}
             className="inline-block text-sm font-medium text-violet-400 hover:text-violet-300 transition-colors"
           >
             Start now &rarr;
-          </Link>
+          </a>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
 
 export default function CTASection() {
   return (
@@ -11,12 +11,12 @@ export default function CTASection() {
           Connect Square, get a site that runs itself.
           Ten minutes from now, it could be live.
         </p>
-        <Link
-          href="/get-started"
+        <a
+          href={`${webUrl}/get-started`}
           className="inline-block bg-violet-600 hover:bg-violet-500 text-white font-medium px-10 py-4 rounded transition-colors text-sm tracking-wide"
         >
           Get Started
-        </Link>
+        </a>
       </div>
     </section>
   );

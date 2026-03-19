@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
+
+const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
 
 export default function LandingNav() {
   const [open, setOpen] = useState(false);
@@ -10,9 +11,9 @@ export default function LandingNav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="font-display text-xl text-white tracking-tight">
+        <a href="/" className="font-display text-xl text-white tracking-tight">
           REB
-        </Link>
+        </a>
 
         <div className="hidden md:flex items-center gap-8">
           <a href="#how-it-works" className="text-[13px] text-zinc-500 hover:text-zinc-200 transition-colors">
@@ -21,12 +22,12 @@ export default function LandingNav() {
           <a href="#pricing" className="text-[13px] text-zinc-500 hover:text-zinc-200 transition-colors">
             Pricing
           </a>
-          <Link
-            href="/get-started"
+          <a
+            href={`${webUrl}/get-started`}
             className="text-[13px] font-medium bg-violet-600 hover:bg-violet-500 text-white px-4 py-1.5 rounded transition-colors"
           >
             Get Started
-          </Link>
+          </a>
         </div>
 
         <button
@@ -54,12 +55,12 @@ export default function LandingNav() {
           >
             Pricing
           </a>
-          <Link
-            href="/get-started"
+          <a
+            href={`${webUrl}/get-started`}
             className="text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white px-5 py-2.5 rounded transition-colors text-center"
           >
             Get Started
-          </Link>
+          </a>
         </div>
       )}
     </nav>

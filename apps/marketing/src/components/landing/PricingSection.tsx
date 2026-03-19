@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Check } from "lucide-react";
 
 const included = [
@@ -10,6 +9,8 @@ const included = [
   "Unlimited updates",
   "No setup fee",
 ];
+
+const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
 
 export default function PricingSection() {
   return (
@@ -66,12 +67,12 @@ export default function PricingSection() {
               ))}
             </ul>
 
-            <Link
-              href="/get-started"
+            <a
+              href={`${webUrl}/get-started`}
               className="block w-full bg-violet-600 hover:bg-violet-500 text-white font-medium py-3.5 rounded text-sm text-center transition-colors"
             >
               Get Started
-            </Link>
+            </a>
           </div>
         </div>
       </div>

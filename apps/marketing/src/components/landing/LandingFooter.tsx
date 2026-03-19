@@ -1,4 +1,4 @@
-import Link from "next/link";
+const webUrl = process.env.NEXT_PUBLIC_WEB_URL || "";
 
 export default function LandingFooter() {
   return (
@@ -17,12 +17,12 @@ export default function LandingFooter() {
             <a href="#pricing" className="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">
               Pricing
             </a>
-            <Link href="/get-started" className="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">
+            <a href={`${webUrl}/get-started`} className="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">
               Get Started
-            </Link>
-            <Link href="/admin/login" className="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">
+            </a>
+            <a href={`${webUrl}/admin/login`} className="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">
               Login
-            </Link>
+            </a>
           </nav>
         </div>
 
