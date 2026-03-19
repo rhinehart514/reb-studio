@@ -1,0 +1,28 @@
+version: "0.1.0"
+thesis: "Square-connected local businesses will use an AI-managed website if onboarding takes <10 minutes and the site looks professional"
+
+evidence:
+  - claim: "Onboarding flow works end-to-end with real Square data"
+    status: untested
+  - claim: "AI chat can handle common content update requests"
+    status: untested
+  - claim: "Dashboard shows meaningful data to business owner"
+    status: untested
+  - claim: "First user returns to dashboard within 7 days"
+    status: untested
+
+milestones:
+  - name: "v0.1 — First Real User"
+    features: [onboarding, square-integration, ai-agent, client-site, dashboard]
+    criteria: "One real business owner completes onboarding and uses the dashboard"
+    status: in-progress
+
+  - name: "v0.2 — Retention Signal"
+    features: [ai-agent, dashboard]
+    criteria: "First user returns unprompted within 7 days"
+    status: planned
+
+  - name: "v0.3 — Second Client"
+    features: [infrastructure, landing-page]
+    criteria: "Second business signs up via landing page"
+    status: planned

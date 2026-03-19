@@ -1,0 +1,35 @@
+stage: mvp
+mode: build
+
+diagnosis: |
+  REB Studio is a WaaS (Website-as-a-Service) product for local businesses on Square.
+  The core loop works: Square OAuth → data sync → AI-managed site → dashboard.
+  The monorepo split (web + marketing) is clean.
+
+  The bottleneck is not code — it's validation. No real user has gone through
+  the onboarding flow end-to-end. Until someone connects their real Square account
+  and sees their real data on a real site, everything is speculation.
+
+bottleneck: first-real-user
+bottleneck_reason: "All code paths exist but no real user has validated the full loop. The product could be perfect or fundamentally broken — we don't know."
+
+bets:
+  - name: square-onboarding-works
+    confidence: 0.6
+    evidence: "OAuth flow is complete, sync maps catalog to content, but untested with real Square data"
+    risk: "Square sandbox data ≠ real merchant data shapes. Edge cases in catalog mapping."
+
+  - name: ai-chat-is-preferred
+    confidence: 0.4
+    evidence: "Chat UI exists, AI agent has tools, but no user preference data"
+    risk: "Business owners may not trust AI to edit their site. May prefer forms."
+
+  - name: pricing-converts
+    confidence: 0.3
+    evidence: "$49 first month is aggressive. No market testing."
+    risk: "Could be too cheap (looks low quality) or too expensive (compared to free)."
+
+anti-patterns:
+  - "Building more features before validating the first user's experience"
+  - "Polishing the landing page before proving the product works"
+  - "Adding multi-tenant before proving single-tenant"

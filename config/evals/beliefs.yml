@@ -1,0 +1,186 @@
+# REB Studio — Mechanical Assertions
+# These are the regression safety net. If any fails, something is broken.
+
+assertions:
+
+  # --- Infrastructure ---
+  - id: web-package
+    type: file_check
+    path: apps/web/package.json
+    expect_contains: "@reb/web"
+    feature: infrastructure
+    description: "Web app package exists as @reb/web"
+
+  - id: marketing-package
+    type: file_check
+    path: apps/marketing/package.json
+    expect_contains: "@reb/marketing"
+    feature: landing-page
+    description: "Marketing app package exists as @reb/marketing"
+
+  - id: types-exist
+    type: file_check
+    path: apps/web/src/lib/types.ts
+    expect_contains: "ContentSection"
+    feature: infrastructure
+    description: "Content type system exists with ContentSection union"
+
+  - id: schemas-exist
+    type: file_check
+    path: apps/web/src/lib/schemas.ts
+    expect_contains: "sectionSchemas"
+    feature: infrastructure
+    description: "Zod validation schemas exist for all sections"
+
+  - id: storage-dual-mode
+    type: file_check
+    path: apps/web/src/lib/storage.ts
+    expect_contains: "REDIS_URL"
+    feature: infrastructure
+    description: "Storage layer supports Redis and dev-file fallback"
+
+  - id: auth-jwt
+    type: file_check
+    path: apps/web/src/lib/auth.ts
+    expect_contains: "jwtVerify"
+    feature: infrastructure
+    description: "JWT auth with jose verification exists"
+
+  - id: middleware-protects-routes
+    type: file_check
+    path: apps/web/src/middleware.ts
+    expect_contains: "/admin"
+    feature: infrastructure
+    description: "Middleware protects admin and dashboard routes"
+
+  # --- Square Integration ---
+  - id: square-oauth
+    type: file_check
+    path: apps/web/src/lib/square.ts
+    expect_contains: "getOAuthUrl"
+    feature: square-integration
+    description: "Square OAuth flow implemented"
+
+  - id: square-sync
+    type: file_check
+    path: apps/web/src/lib/square.ts
+    expect_contains: "performSquareSync"
+    feature: square-integration
+    description: "Square data sync maps catalog to content sections"
+
+  - id: square-webhook
+    type: file_check
+    path: apps/web/src/app/api/square/webhook/route.ts
+    feature: square-integration
+    description: "Square webhook endpoint exists for auto-updates"
+
+  # --- AI Agent ---
+  - id: agent-tools
+    type: file_check
+    path: apps/web/src/app/api/agent/route.ts
+    expect_contains: "read_section"
+    feature: ai-agent
+    description: "AI agent has read_section and update_section tools"
+
+  - id: agent-validation
+    type: file_check
+    path: apps/web/src/app/api/agent/route.ts
+    expect_contains: "safeParse"
+    feature: ai-agent
+    description: "AI agent validates updates with Zod before writing"
+
+  - id: agent-array-guard
+    type: file_check
+    path: apps/web/src/app/api/agent/route.ts
+    expect_contains: "oldLen"
+    feature: ai-agent
+    description: "Array destructive operation guard prevents mass deletion"
+
+  - id: chat-persistence
+    type: file_check
+    path: apps/web/src/app/api/chat/route.ts
+    feature: ai-agent
+    description: "Chat history persistence endpoint exists"
+
+  # --- Onboarding ---
+  - id: onboarding-page
+    type: file_check
+    path: apps/web/src/app/get-started/page.tsx
+    feature: onboarding
+    description: "Onboarding page exists at /get-started"
+
+  - id: onboarding-chat
+    type: file_check
+    path: apps/web/src/components/onboarding/OnboardingChat.tsx
+    expect_contains: "/api/onboard"
+    feature: onboarding
+    description: "Onboarding chat component calls onboard API"
+
+  # --- Dashboard ---
+  - id: dashboard-overview
+    type: file_check
+    path: apps/web/src/app/dashboard/page.tsx
+    feature: dashboard
+    description: "Dashboard overview page exists"
+
+  - id: dashboard-chat
+    type: file_check
+    path: apps/web/src/app/dashboard/chat/page.tsx
+    feature: dashboard
+    description: "Dashboard chat page exists"
+
+  - id: dashboard-sidebar
+    type: file_check
+    path: apps/web/src/components/dashboard/DashboardSidebar.tsx
+    feature: dashboard
+    description: "Dashboard sidebar navigation exists"
+
+  # --- Client Site ---
+  - id: client-site-layout
+    type: file_check
+    path: apps/web/src/app/(client-site)/layout.tsx
+    feature: client-site
+    description: "Client site layout with smooth scroll exists"
+
+  - id: client-site-sections
+    type: file_check
+    path: apps/web/src/components/public/Hero.tsx
+    feature: client-site
+    description: "Client site hero component exists"
+
+  - id: client-site-defaults
+    type: file_check
+    path: apps/web/src/lib/defaults.ts
+    expect_contains: "defaultHero"
+    feature: client-site
+    description: "Default content exists for all sections"
+
+  # --- Landing Page ---
+  - id: landing-hero
+    type: file_check
+    path: apps/marketing/src/components/landing/HeroSection.tsx
+    expect_contains: "while you sleep"
+    feature: landing-page
+    description: "Landing hero has the core value prop"
+
+  - id: landing-pricing
+    type: file_check
+    path: apps/marketing/src/components/landing/PricingSection.tsx
+    expect_contains: "$49"
+    feature: landing-page
+    description: "Landing page shows pricing"
+
+  # --- Monorepo Structure ---
+  - id: monorepo-workspace
+    type: file_check
+    path: pnpm-workspace.yaml
+    expect_contains: "apps/*"
+    feature: infrastructure
+    description: "pnpm workspace configured for monorepo"
+
+  - id: monorepo-turbo
+    type: file_check
+    path: turbo.json
+    expect_contains: "build"
+    feature: infrastructure
+    description: "Turborepo configured for parallel builds"

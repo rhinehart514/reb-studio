@@ -1,0 +1,302 @@
+{
+  "research_date": "2026-03-18",
+  "topic": "Product as a Service / AI-Managed Websites — Market Evidence",
+  "confidence_note": "All findings from web search synthesis. No primary interviews. Treat as directional, not precise.",
+
+  "market_size_signals": {
+    "global_website_builder_market": {
+      "2025_value_usd": "2.3B",
+      "2026_projected_usd": "2.6B",
+      "growth_rate": "13% YoY",
+      "2030_projected_usd": "3.3B",
+      "2024_to_2032_growth": "85%",
+      "source": "Multiple industry reports cited by Wix, EmailVendorSelection, Zippia"
+    },
+    "small_business_without_website": {
+      "us_smbs_without_website_pct": 27,
+      "note": "~27% of US small businesses still have no website — the unaddressed market",
+      "consumer_research_online_pct": 81,
+      "note2": "81% of consumers research online before buying — creates urgency for local business presence",
+      "source": "NetworkSolutions, Wix blog, MarketingLTB"
+    },
+    "waas_adoption_prediction": {
+      "by_2026_subscription_website_adoption_smb_pct": 60,
+      "note": "60%+ of small businesses worldwide expected to adopt subscription-based website model by 2026 — this is a category claim, treat as aspirational",
+      "source": "WebsityDigital, InstaWP"
+    },
+    "total_addressable_market_framing": {
+      "us_small_businesses_count": "33M+",
+      "with_no_website": "~8.9M (27%)",
+      "with_poor_website_estimate": "unknown — likely equal or larger",
+      "note": "Even capturing 0.1% of the 27% unaddressed = 8,900 customers"
+    }
+  },
+
+  "competitor_positioning": {
+    "durable": {
+      "positioning": "30-second instant website for local service businesses — CRM + invoicing bundled",
+      "target_customer": "Solopreneurs, freelancers, local service providers (cleaners, photographers, trainers)",
+      "ai_story": "Full site generated from single prompt in under 30 seconds — most complete 'instant' generation in market",
+      "pricing_monthly": "$15-$35/month (billed annually)",
+      "pricing_floor": "$22/month (billed annually)",
+      "strengths": "Speed, all-in-one (CRM/invoicing), owns 'instant website' positioning",
+      "weakness": "No human oversight, no ongoing management, self-serve only — customer still responsible for content",
+      "ai_managed_ongoing": false,
+      "source": "Durable.com pricing, B12 directory, multiple reviews"
+    },
+    "b12": {
+      "positioning": "AI speed + human expert review — designers and copywriters refine AI output",
+      "target_customer": "Service businesses wanting professional quality without DIY",
+      "ai_story": "AI generates, humans refine — hybrid model. Uses 'Orchestra' platform (AI assigns tasks, humans complete). <30 day launch.",
+      "pricing_monthly": {
+        "starter": "free",
+        "basic": "$42/month",
+        "professional": "$169/month",
+        "advanced": "$339/month"
+      },
+      "pricing_setup_fee": "$1,999 one-time for managed launch (Professional/Advanced)",
+      "strengths": "Quality control via humans, real designers + copywriters, proven hybrid model",
+      "weakness": "High price for SMBs, human labor limits scale, not truly 'managed ongoing'",
+      "ai_managed_ongoing": false,
+      "source": "B12.io, G2, Capterra, WebCreate"
+    },
+    "10web": {
+      "positioning": "AI + WordPress — for users who won't leave the WordPress ecosystem",
+      "target_customer": "WordPress site owners, agencies managing WordPress sites",
+      "ai_story": "Vibe for WordPress (launched Oct 2025) — 2M+ AI-generated sites",
+      "pricing_monthly": "Starts at $10/month",
+      "strengths": "WordPress compatibility, Elementor-based editor, AI hosting bundle",
+      "weakness": "WordPress dependency, not for non-WP users",
+      "ai_managed_ongoing": false,
+      "source": "10Web, NxCode comparison"
+    },
+    "duda": {
+      "positioning": "Agency platform — white-label, collaboration, client management",
+      "target_customer": "Web agencies and teams (not end businesses)",
+      "ai_story": "AI as assistant within platform — text generation, meta descriptions, alt text optimization. NOT full-site generation.",
+      "pricing_monthly": "Not publicly listed in search results — agency/enterprise tier",
+      "strengths": "Agency workflow, white-label capability, professional feature set",
+      "weakness": "Not for solo founders/SMBs, AI is assistant-only not generative",
+      "ai_managed_ongoing": false,
+      "note": "Duda is the tech platform FOR agencies — could be an enabling infrastructure for REB Studio",
+      "source": "Duda.co, NxCode, Titan Email"
+    },
+    "mixo": {
+      "positioning": "Landing page in minutes — intentionally minimal",
+      "target_customer": "Early-stage startups needing email capture fast",
+      "ai_story": "Hero + value prop + email capture. Subscriber management included.",
+      "pricing_monthly": "$9/month",
+      "strengths": "Extremely cheap, fast, good for validation",
+      "weakness": "Not a full website, no ongoing management, too simple for local businesses",
+      "ai_managed_ongoing": false,
+      "source": "B12 directory, NxCode comparison"
+    },
+    "bookmark_aida": {
+      "positioning": "Fully responsive website in 2 minutes via AIDA AI system",
+      "target_customer": "Small businesses wanting quick launch",
+      "ai_story": "AIDA adapts templates from business type + branding preferences — responsive in ~2 minutes",
+      "pricing_monthly": "Not surfaced clearly in search",
+      "strengths": "Speed, responsiveness",
+      "weakness": "Template-feel, no ongoing management",
+      "ai_managed_ongoing": false,
+      "source": "B12 directory, Titan Email"
+    },
+    "wix": {
+      "positioning": "Market dominant — nearly 50% website builder market share, 282M users",
+      "target_customer": "Everyone",
+      "ai_story": "Wix ADI existed pre-2024. Now AI generation + editing assistance throughout platform.",
+      "pricing_monthly": "Ranges from free to $36+/month",
+      "strengths": "Scale, ecosystem, brand recognition",
+      "weakness": "Not managed — still self-serve. AI accelerates creation, doesn't replace management.",
+      "ai_managed_ongoing": false,
+      "source": "Wix blog, EmailVendorSelection"
+    },
+    "lovable": {
+      "positioning": "Vibe coding — AI generates full-stack web apps from prompts",
+      "target_customer": "Developers and founders, not local businesses",
+      "ai_story": "$100M ARR in 8 months, $200M ARR 4 months later — fastest growing in space",
+      "pricing_monthly": "Not confirmed in search results",
+      "note": "Not a direct competitor for local business managed websites — different segment",
+      "ai_managed_ongoing": false,
+      "source": "NxCode, Titan Email, capacity.so"
+    }
+  },
+
+  "pricing_benchmarks": {
+    "website_builder_self_serve": {
+      "floor": "$9/month (Mixo)",
+      "typical_range": "$15-$42/month",
+      "premium_self_serve": "$169-$339/month (B12 Professional/Advanced)"
+    },
+    "website_maintenance_managed": {
+      "floor": "$25-$50/month (basic managed hosting)",
+      "small_business_typical": "$100-$400/month",
+      "professional_retainer": "$250-$2,500/month",
+      "agency_comprehensive": "$3,000-$8,000/month (content programs)"
+    },
+    "waas_productized": {
+      "observed_floor": "$49/month (small business basic WaaS)",
+      "sweet_spot_observed": "$99-$299/month",
+      "ai_productized_sweet_spot": "$199/month (Adaptify SEO, Brandwell team plans — adjacent category)",
+      "high_end_waas": "$500-$1,500/month (WaaS Agency — traditional, no AI)"
+    },
+    "setup_fees": {
+      "typical": "$1,000-$10,000 upfront (traditional web dev)",
+      "b12_managed_launch": "$1,999 one-time",
+      "waas_traditional_high_end": "$5,000 setup + monthly"
+    },
+    "gap_identified": "$99-$299/month all-inclusive AI-managed website with human oversight is underserved — most players are either self-serve cheap OR high-retainer agency. The middle is wide open."
+  },
+
+  "technology_enablers": {
+    "what_is_possible_now_that_wasnt_in_2024": [
+      {
+        "capability": "Full site generation from single prompt",
+        "examples": ["Durable (30 seconds)", "Lovable", "Wix AI"],
+        "impact": "Eliminates custom build cost — site creation can be commoditized"
+      },
+      {
+        "capability": "Multi-tenant infrastructure with custom domains at scale",
+        "examples": ["Vercel Platforms Starter Kit", "Hashnode (35,000+ custom domains)"],
+        "impact": "One operator can manage N client sites on shared infrastructure with per-client isolation"
+      },
+      {
+        "capability": "AI copy + SEO generation",
+        "examples": ["B12 Orchestra", "10Web Vibe", "Duda AI assistant"],
+        "impact": "Content updates that required a copywriter now require a prompt"
+      },
+      {
+        "capability": "Agent-driven operations",
+        "examples": ["Claude Code agents", "n8n automations", "Zapier AI"],
+        "impact": "Routine site maintenance (image swaps, hours updates, offer changes) can be fully automated"
+      },
+      {
+        "capability": "AI-human hybrid delivery",
+        "examples": ["B12 model — AI generates, human reviews"],
+        "impact": "Quality ceiling of self-serve AI raised to near-agency quality at lower cost"
+      }
+    ],
+    "vercel_platforms_starter_kit": {
+      "what_it_is": "Full-stack Next.js multi-tenant template with custom domains + SSL via Vercel Domains API",
+      "production_adopters": ["Hashnode (35k+ domains)", "Super", "Cal.com"],
+      "what_it_enables": "Build a SaaS where each customer gets their own subdomain or custom domain — exactly the REB Studio model",
+      "source": "Vercel.com, GitHub vercel/platforms"
+    }
+  },
+
+  "customer_pain_points": {
+    "small_business_owner_unsolved": [
+      {
+        "pain": "Website built once, never updated — looks stale within 12 months",
+        "why_unsolved": "Self-serve tools require ongoing effort. Agencies are too expensive. No middle option."
+      },
+      {
+        "pain": "No time to learn tools — local business owner is the product/service, not a marketer",
+        "why_unsolved": "Every platform assumes some technical or creative capacity the owner doesn't have"
+      },
+      {
+        "pain": "First website creation is scary and expensive — upfront costs kill momentum",
+        "why_unsolved": "Traditional web dev $1k-$10k upfront. WaaS model addresses this with $0 down."
+      },
+      {
+        "pain": "SEO and content are ongoing — impossible to keep up solo",
+        "why_unsolved": "Requires consistent effort. AI tools help but still require operator time."
+      },
+      {
+        "pain": "Can't afford an agency, overqualified for DIY tools",
+        "why_unsolved": "The $99-$299/month productized managed tier is the white space"
+      }
+    ],
+    "waas_model_specific_problems": [
+      "Most WaaS is still human-labor-intensive — doesn't truly scale without AI",
+      "AI-only platforms (Durable, Mixo) abandon customers after launch — no managed care",
+      "B12 hybrid model is closest to the ideal but prices out most local businesses"
+    ]
+  },
+
+  "solo_operator_scaling": {
+    "what_is_proven": [
+      {
+        "operator": "Barbara Jovanovic",
+        "result": "Six-figure agency, no employees — loads client branding into AI workspace, 1hr client input = weeks of content",
+        "source": "Unkoa Marketing / Medium"
+      },
+      {
+        "operator": "Sarah Chen",
+        "result": "$420K ARR in 8 months, 25hr/week, using ChatGPT Plus + Canva Pro + Zapier",
+        "source": "Unkoa Marketing"
+      },
+      {
+        "operator": "Brand designer (unnamed)",
+        "result": "$720K in 2025, 15-20 concurrent clients, AI agents for research/design/PM",
+        "source": "BotBorne"
+      },
+      {
+        "operator": "Alex (unnamed)",
+        "result": "12 retainers at $750-$1,000 each, tooling costs under $500/month",
+        "source": "BotBorne"
+      }
+    ],
+    "key_metrics": {
+      "ai_automates_agency_ops_pct": "70-80%",
+      "hours_recovered_per_client_per_week": "9-10",
+      "productivity_gain_pct": "150-300%",
+      "revenue_growth_vs_manual_pct": "40%"
+    },
+    "sustainable_solo_client_load": "8-12 clients at $2,000-$5,000/month each (content-focused agencies) — for website management at lower price points, client count would need to be higher (30-50 at $199/month = $5,970-$9,950/month)"
+  },
+
+  "waas_category_status": {
+    "is_it_a_real_category": true,
+    "evidence": [
+      "Dedicated domain waas.agency exists with agency partner program",
+      "Kinsta published 'How agencies can deliver on Website as a Service' guide",
+      "InstaWP calls WaaS 'The Biggest Trend in WordPress for 2026'",
+      "Multiple agencies (AlwaysFresh, RankWorks, LiftedWebsites) explicitly use WaaS branding",
+      "WordPress + AI WaaS tutorials actively published in 2025-2026"
+    ],
+    "category_stage": "Emerging — named but fragmented. No dominant player. AI integration is the differentiator not yet captured by incumbents.",
+    "ai_waas_gap": "Traditional WaaS uses humans for management. AI-native WaaS (automated ongoing management at scale) is effectively unclaimed territory."
+  },
+
+  "strategic_synthesis": {
+    "the_gap": "AI can now create sites in 30 seconds. But every platform drops the customer after creation. No one is doing AI-MANAGED websites at scale for local businesses in the $99-$299/month tier.",
+    "why_now": [
+      "Vercel multi-tenant infrastructure makes per-client isolation cheap",
+      "LLM agents can handle routine content/SEO updates with minimal oversight",
+      "70-80% of agency ops automatable — one person can manage 30-50 sites",
+      "WaaS named as category — customers starting to understand subscription model for websites",
+      "B12's hybrid model proves customers will pay for ongoing managed quality — but $169-$339/month is too high for most local businesses"
+    ],
+    "beachhead": "Local service businesses (cleaners, trainers, photographers, restaurants, contractors) — unsophisticated about web, price-sensitive, time-poor, high churn risk if left to self-serve",
+    "moat_candidates": [
+      "Speed of update turnaround (same-day vs weeks for traditional agencies)",
+      "AI learns each client's brand voice over time",
+      "Network effect if platform also drives local SEO / referrals"
+    ],
+    "risks": [
+      "Durable could add managed services and undercut on price with their existing distribution",
+      "Wix/Squarespace could launch managed tiers — they have distribution advantage",
+      "Customer education: 'why pay monthly when I already have a website?'"
+    ]
+  },
+
+  "sources": [
+    "https://www.nxcode.io/resources/news/top-ai-website-builders-2026",
+    "https://durable.com/pricing",
+    "https://www.b12.io/",
+    "https://waas.agency/",
+    "https://instawp.com/instawp-waas-biggest-wordpress-trend-2024/",
+    "https://kinsta.com/blog/website-as-a-service/",
+    "https://websitydigital.com/blogs/website-as-a-service/",
+    "https://vercel.com/templates/next.js/platforms-starter-kit",
+    "https://github.com/vercel/platforms",
+    "https://www.botborne.com/blog/ai-agents-freelancers-solopreneurs-2026.html",
+    "https://medium.com/@unkoamarketing/one-person-agency-10-output-how-solo-marketers-use-ai-to-scale-in-2025-2e24484ecf95",
+    "https://www.wix.com/blog/small-business-website-statistics",
+    "https://www.zippia.com/advice/small-business-website-statistics/",
+    "https://www.webfx.com/web-development/pricing/website-maintenance/",
+    "https://rankworks.com/website-as-a-service-waas/",
+    "https://digitalagencynetwork.com/ai-agency-pricing/"
+  ]
+}

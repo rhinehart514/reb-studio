@@ -1,81 +1,98 @@
-name: reb-studio
-description: AI-native Website-as-a-Service for local businesses
-stage: mvp
-type: web
+project:
+  name: reb-studio
+  stage: mvp
+  mode: build
+  type: web
+
+value:
+  hypothesis: "A local business owner can connect Square and get a live, AI-managed website in under 10 minutes — without touching a CMS or calling an agency."
+  user: "A salon owner in Buffalo who uses Square for payments and has no website or a bad one"
+  signals:
+    - "User completes onboarding flow and sees live site preview"
+    - "User chats with AI to update content without help"
+    - "User returns to dashboard within 7 days unprompted"
 
 features:
-  - name: landing-page
+  - name: onboarding
     status: active
     weight: 5
-    description: Product marketing landing page at /
+    description: AI onboarding flow — Square connect to live site in minutes
+    delivers: "Zero-effort site creation from Square account data"
+    for: "New business owner signing up"
     code:
-      - src/app/page.tsx
-      - src/app/layout.tsx
-      - src/components/landing/
-
-  - name: client-site
-    status: active
-    weight: 5
-    description: Client website template at /preview
-    code:
-      - src/app/(client-site)/
-      - src/components/public/
-      - src/components/providers/
-      - src/hooks/
-      - src/lib/defaults.ts
-
-  - name: dashboard
-    status: active
-    weight: 4
-    description: Client dashboard with AI chat
-    code:
-      - src/app/dashboard/
-      - src/components/dashboard/
-
-  - name: admin-panel
-    status: active
-    weight: 3
-    description: Admin panel for content management
-    code:
-      - src/app/admin/
-      - src/components/admin/
-
-  - name: ai-agent
-    status: active
-    weight: 4
-    description: AI content management agent via chat
-    code:
-      - src/app/api/agent/route.ts
-      - src/app/api/chat/route.ts
-      - src/app/api/activity/route.ts
+      - apps/web/src/app/get-started/
+      - apps/web/src/components/onboarding/
+      - apps/web/src/app/api/onboard/route.ts
+    depends_on: [square-integration, infrastructure]
 
   - name: square-integration
     status: active
     weight: 5
-    description: Square OAuth + data sync + webhooks
+    description: Square OAuth + catalog sync + webhook auto-update
+    delivers: "Services, hours, location auto-imported and kept in sync"
+    for: "Business owner who manages everything through Square"
     code:
-      - src/lib/square.ts
-      - src/app/api/square/
+      - apps/web/src/lib/square.ts
+      - apps/web/src/app/api/square/
 
-  - name: onboarding
+  - name: ai-agent
     status: active
     weight: 5
-    description: AI onboarding flow at /get-started
+    description: AI chat agent that reads and updates site content via tools
+    delivers: "Natural language website management — no forms, no CMS"
+    for: "Business owner who wants to update their site by texting"
     code:
-      - src/app/get-started/
-      - src/components/onboarding/
-      - src/app/api/onboard/route.ts
+      - apps/web/src/app/api/agent/route.ts
+      - apps/web/src/app/api/chat/route.ts
+      - apps/web/src/app/api/activity/route.ts
+    depends_on: [infrastructure]
+
+  - name: client-site
+    status: active
+    weight: 4
+    description: Public-facing client website with CMS-driven content
+    delivers: "Professional business website with real content"
+    for: "Potential customers searching for the business"
+    code:
+      - apps/web/src/app/(client-site)/
+      - apps/web/src/components/public/
+      - apps/web/src/components/providers/
+      - apps/web/src/hooks/
+      - apps/web/src/lib/defaults.ts
+
+  - name: dashboard
+    status: active
+    weight: 4
+    description: Client business OS dashboard with AI chat, overview, site preview
+    delivers: "At-a-glance business performance and one-tap content management"
+    for: "Business owner checking how their site is doing"
+    code:
+      - apps/web/src/app/dashboard/
+      - apps/web/src/components/dashboard/
+    depends_on: [ai-agent]
+
+  - name: landing-page
+    status: active
+    weight: 3
+    description: REB Studio marketing page — sells the product
+    delivers: "Convincing pitch that converts visitors to signups"
+    for: "Local business owner evaluating whether to sign up"
+    code:
+      - apps/marketing/src/app/page.tsx
+      - apps/marketing/src/components/landing/
 
   - name: infrastructure
     status: active
-    weight: 3
-    description: Auth, storage, types, schemas, middleware
+    weight: 2
+    description: Auth, storage, types, schemas, middleware, content API
+    delivers: "Reliable data layer and auth for all features"
+    for: "All features depend on this"
     code:
-      - src/lib/types.ts
-      - src/lib/schemas.ts
-      - src/lib/storage.ts
-      - src/lib/auth.ts
-      - src/middleware.ts
-      - src/app/api/auth/
-      - src/app/api/content/
-      - src/app/api/upload/route.ts
+      - apps/web/src/lib/types.ts
+      - apps/web/src/lib/schemas.ts
+      - apps/web/src/lib/storage.ts
+      - apps/web/src/lib/auth.ts
+      - apps/web/src/middleware.ts
+      - apps/web/src/app/api/auth/
+      - apps/web/src/app/api/content/
+      - apps/web/src/app/api/upload/route.ts
