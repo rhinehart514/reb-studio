@@ -18,17 +18,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_URL || "https://rebstudio.com"),
   title: "REB Studio — Your site works while you sleep",
   description:
-    "AI-powered websites for local businesses. Connect Square, and we handle the rest. $49 first month.",
+    "Custom websites for local businesses, managed by AI. We build it. Square feeds it. You never think about it. $49 first month.",
   openGraph: {
     title: "REB Studio — Your site works while you sleep",
     description:
-      "AI-powered websites for local businesses. Connect Square, and we handle the rest.",
+      "Custom websites for local businesses, managed by AI. We build it. Square feeds it. You never think about it.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "REB Studio — Your site works while you sleep",
-    description: "AI-powered websites for local businesses. Connect Square, and we handle the rest.",
+    description: "Custom websites for local businesses, managed by AI. We build it. Square feeds it. You never think about it.",
   },
 };
 

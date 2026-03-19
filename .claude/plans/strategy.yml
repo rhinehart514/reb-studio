@@ -2,16 +2,16 @@ stage: mvp
 mode: build
 
 diagnosis: |
-  REB Studio is a WaaS (Website-as-a-Service) product for local businesses on Square.
-  The core loop works: Square OAuth → data sync → AI-managed site → dashboard.
-  The monorepo split (web + marketing) is clean.
+  REB Studio is a productized web agency. Laney builds custom sites, clients get
+  a dashboard + AI agent that manages ongoing content updates. Square integration
+  syncs services/hours automatically.
 
-  The bottleneck is not code — it's validation. No real user has gone through
-  the onboarding flow end-to-end. Until someone connects their real Square account
-  and sees their real data on a real site, everything is speculation.
+  Chelsea's custom site is built. The dashboard and AI agent are functional.
+  The bottleneck is putting it in front of Chelsea and watching her use the
+  AI chat to make a real change to her real site.
 
-bottleneck: first-real-user
-bottleneck_reason: "All code paths exist but no real user has validated the full loop. The product could be perfect or fundamentally broken — we don't know."
+bottleneck: chelsea-uses-dashboard
+bottleneck_reason: "The custom site exists. The AI agent works. But Chelsea hasn't opened the dashboard or chatted with the AI yet. Until she does, we don't know if this model works."
 
 bets:
   - name: square-onboarding-works

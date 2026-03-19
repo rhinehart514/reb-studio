@@ -5,20 +5,20 @@ project:
   type: web
 
 value:
-  hypothesis: "A local business owner can connect Square and get a live, AI-managed website in under 10 minutes — without touching a CMS or calling an agency."
+  hypothesis: "A local business owner will pay $199/mo for a custom-built site + AI agent that handles all content updates via chat — IF the site looks professional and the AI responds instantly."
   user: "A salon owner in Buffalo who uses Square for payments and has no website or a bad one"
   signals:
-    - "User completes onboarding flow and sees live site preview"
-    - "User chats with AI to update content without help"
-    - "User returns to dashboard within 7 days unprompted"
+    - "Client prefers chatting with AI over emailing Laney for changes"
+    - "Client uses the dashboard without being prompted within 7 days"
+    - "Client refers another business owner from their provider network"
 
 features:
   - name: onboarding
     status: active
     weight: 5
-    description: AI onboarding flow — Square connect to live site in minutes
-    delivers: "Zero-effort site creation from Square account data"
-    for: "New business owner signing up"
+    description: New client intake — Square connect + business info gathering
+    delivers: "Fast data collection so Laney can build the custom site quickly"
+    for: "New business owner starting with REB"
     code:
       - apps/web/src/app/get-started/
       - apps/web/src/components/onboarding/
@@ -38,9 +38,9 @@ features:
   - name: ai-agent
     status: active
     weight: 5
-    description: AI chat agent that reads and updates site content via tools
-    delivers: "Natural language website management — no forms, no CMS"
-    for: "Business owner who wants to update their site by texting"
+    description: AI chat agent that manages the custom site via natural language
+    delivers: "Instant content updates without waiting on Laney — change hours, add events, update copy by chatting"
+    for: "Chelsea (and future clients) who need quick changes to their custom site"
     code:
       - apps/web/src/app/api/agent/route.ts
       - apps/web/src/app/api/chat/route.ts

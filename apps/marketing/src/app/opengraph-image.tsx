@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "REB Studio — AI-Powered Websites for Local Businesses";
+export const alt = "REB Studio — Custom Websites for Local Businesses";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -60,7 +60,7 @@ export default async function OGImage() {
               lineHeight: 1.5,
             }}
           >
-            AI-powered websites for local businesses. $49 to start.
+            Custom websites, managed by AI. $49 to start.
           </div>
         </div>
         <div

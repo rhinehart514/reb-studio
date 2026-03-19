@@ -30,7 +30,7 @@ Each has: TypeScript type, Zod schema, default data, API endpoint, admin editor
 - Square sync: OAuth → fetch catalog → map to content types → smart merge preserving user edits
 
 ## Value Hypothesis
-Local business owners on Square will pay $199/mo for a custom site + AI agent that handles all content updates via chat — IF onboarding takes <10 minutes and the AI responds instantly.
+Local business owners will pay $199/mo for a custom-built site + AI agent that handles all content updates via chat — IF the site looks more professional than what they have and the AI responds faster than texting their web person.
 
 ## Do NOT Build
 - Drag-and-drop visual editor

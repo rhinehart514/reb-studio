@@ -22,8 +22,8 @@ export default function HeroSection() {
           </h1>
 
           <p className="mt-6 text-lg text-zinc-500 max-w-md leading-relaxed">
-            Connect Square. Get a website that updates itself.
-            No agencies, no maintenance, no thinking about it.
+            We build you a custom site. AI keeps it running.
+            No maintenance, no waiting on agencies, no thinking about it.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-start gap-3">

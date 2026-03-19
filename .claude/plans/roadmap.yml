@@ -1,14 +1,14 @@
 version: "0.1.0"
-thesis: "Square-connected local businesses will use an AI-managed website if onboarding takes <10 minutes and the site looks professional"
+thesis: "Local business owners will pay $199/mo for a custom-built site + AI agent — IF the site beats what they have and the AI handles updates instantly"
 
 evidence:
-  - claim: "Onboarding flow works end-to-end with real Square data"
+  - claim: "Chelsea prefers chatting with AI over texting Laney for content changes"
     status: untested
-  - claim: "AI chat can handle common content update requests"
+  - claim: "Chelsea's site looks more professional than her LinkTree + Vagaro page"
     status: untested
-  - claim: "Dashboard shows meaningful data to business owner"
+  - claim: "Chelsea opens the dashboard unprompted within 7 days"
     status: untested
-  - claim: "First user returns to dashboard within 7 days"
+  - claim: "Chelsea refers a provider from her network"
     status: untested
 
 milestones:

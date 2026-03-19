@@ -1,18 +1,18 @@
 const steps = [
   {
     num: "01",
-    title: "Connect Square",
-    detail: "One click. We pull your services, hours, location, and branding automatically.",
+    title: "We build your site",
+    detail: "A custom website designed around your business. Not a template — built by a real person who cares.",
   },
   {
     num: "02",
-    title: "AI builds your site",
-    detail: "A custom website in minutes, not months. Designed around your business, not a template.",
+    title: "Connect Square",
+    detail: "One click. Your services, hours, and location sync automatically. Prices update when you change them in Square.",
   },
   {
     num: "03",
-    title: "It runs itself",
-    detail: "SEO, content updates, Square sync — handled. You focus on your business.",
+    title: "AI handles the rest",
+    detail: "Need to update your hours? Add an event? Change your bio? Just tell the AI. Your site stays fresh without you thinking about it.",
   },
 ];
 
@@ -23,10 +23,10 @@ export default function HowItWorks() {
     <section id="how-it-works" className="bg-[#0a0a0a] py-24 md:py-36">
       <div className="max-w-5xl mx-auto px-6">
         <h2 className="font-display text-3xl md:text-4xl text-white mb-3">
-          Three steps. Ten minutes.
+          How it works
         </h2>
         <p className="text-zinc-600 text-sm mb-16 max-w-md">
-          From Square account to live website. No forms, no calls, no waiting.
+          We build it. Square feeds it. AI runs it. You forget about it.
         </p>
 
         <div className="space-y-0">
