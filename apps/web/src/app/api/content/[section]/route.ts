@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import type { ContentSection } from "@/lib/types";
+import { sectionSchemas } from "@/lib/schemas";
 import { getContent, setContent } from "@/lib/storage";
 
 const VALID_SECTIONS: ContentSection[] = [
@@ -16,71 +17,6 @@ const VALID_SECTIONS: ContentSection[] = [
 
 function isValidSection(section: string): section is ContentSection {
   return VALID_SECTIONS.includes(section as ContentSection);
-}
-
-const REQUIRED_FIELDS: Record<ContentSection, string[]> = {
-  hero: ["headline", "tagline", "ctaText"],
-  services: ["headline"],
-  story: ["headline", "statement"],
-  testimonials: [],
-  events: [],
-  providers: [],
-  contact: ["email"],
-  settings: ["siteName"],
-};
-
-function validateBody(section: ContentSection, body: Record<string, unknown>): string | null {
-  const required = REQUIRED_FIELDS[section];
-  for (const field of required) {
-    const value = body[field];
-    if (typeof value !== "string" || value.trim() === "") {
-      return `"${field}" is required and cannot be empty`;
-    }
-  }
-
-  if (section === "contact" && typeof body.email === "string") {
-    if (!body.email.includes("@") || !body.email.includes(".")) {
-      return "Invalid email address";
-    }
-  }
-
-  if (section === "services" && Array.isArray(body.services)) {
-    for (let i = 0; i < body.services.length; i++) {
-      const s = body.services[i] as Record<string, unknown>;
-      if (typeof s.name !== "string" || s.name.trim() === "") {
-        return `Service ${i + 1} is missing a name`;
-      }
-    }
-  }
-
-  if (section === "testimonials" && Array.isArray(body.testimonials)) {
-    for (let i = 0; i < body.testimonials.length; i++) {
-      const t = body.testimonials[i] as Record<string, unknown>;
-      if (typeof t.quote !== "string" || t.quote.trim() === "") {
-        return `Testimonial ${i + 1} is missing a quote`;
-      }
-    }
-  }
-
-  if (section === "events" && Array.isArray(body.events)) {
-    for (let i = 0; i < body.events.length; i++) {
-      const e = body.events[i] as Record<string, unknown>;
-      if (typeof e.title !== "string" || e.title.trim() === "") {
-        return `Event ${i + 1} is missing a title`;
-      }
-    }
-  }
-
-  if (section === "providers" && Array.isArray(body.providers)) {
-    for (let i = 0; i < body.providers.length; i++) {
-      const p = body.providers[i] as Record<string, unknown>;
-      if (typeof p.name !== "string" || p.name.trim() === "") {
-        return `Provider ${i + 1} is missing a name`;
-      }
-    }
-  }
-
-  return null;
 }
 
 export async function GET(
@@ -107,14 +43,24 @@ export async function PUT(
     return NextResponse.json({ error: "Invalid section" }, { status: 400 });
   }
 
-  const body = await request.json();
-
-  const validationError = validateBody(section, body);
-  if (validationError) {
-    return NextResponse.json({ error: validationError }, { status: 422 });
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  await setContent(section, body);
+  const schema = sectionSchemas[section];
+  const parsed = schema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: parsed.error.issues.map((i) => i.message).join(", ") },
+      { status: 422 }
+    );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  await setContent(section, parsed.data as any);
   revalidatePath("/");
   revalidatePath("/preview");
 

@@ -13,9 +13,10 @@ export async function POST(req: Request) {
     });
   }
 
-  const result = streamText({
-    model: google("gemini-2.5-flash"),
-    system: `You are an AI website builder assistant for REB Studio. You're helping a new business owner create their website through conversation.
+  try {
+    const result = streamText({
+      model: google("gemini-2.5-flash"),
+      system: `You are an AI website builder assistant for REB Studio. You're helping a new business owner create their website through conversation.
 
 Your job is to gather information about their business and use the save_section tool to build their website in real-time. Be conversational, warm, and efficient.
 
@@ -39,53 +40,62 @@ Your job is to gather information about their business and use the save_section 
 
 **Tone:** Friendly, professional, efficient. Get them excited about their new website. Don't ask too many questions at once — 1-2 per message.
 
-**Important:** After you've saved 3 or more sections, proactively tell the user their site is taking shape and they can preview it. Say something like: "I've built out your hero, services, and contact sections! You can preview your site at /preview anytime — it updates live as we talk." Continue gathering info after that, but make sure they know the preview exists.`,
-    messages,
-    tools: {
-      save_section: tool({
-        description:
-          "Save content for a website section. Send the COMPLETE section data.",
-        inputSchema: z.object({
-          section: z.enum([
-            "hero",
-            "services",
-            "story",
-            "testimonials",
-            "events",
-            "providers",
-            "contact",
-            "settings",
-          ]),
-          data: z.record(z.string(), z.unknown()),
-        }),
-        execute: async ({ section, data }) => {
-          const { sectionSchemas } = await import("@/lib/schemas");
-          const schema = sectionSchemas[section];
-          const parsed = schema.safeParse(data);
-          if (!parsed.success) {
+**Important:** After you've saved 3 or more sections, proactively tell the user their site is taking shape and they can preview it. Say something like: "Your site is coming together! You can preview it live — it updates as we talk." Continue gathering info after that.`,
+      messages,
+      tools: {
+        save_section: tool({
+          description:
+            "Save content for a website section. Send the COMPLETE section data.",
+          inputSchema: z.object({
+            section: z.enum([
+              "hero",
+              "services",
+              "story",
+              "testimonials",
+              "events",
+              "providers",
+              "contact",
+              "settings",
+            ]),
+            data: z.record(z.string(), z.unknown()),
+          }),
+          execute: async ({ section, data }) => {
+            const { sectionSchemas } = await import("@/lib/schemas");
+            const schema = sectionSchemas[section];
+            const parsed = schema.safeParse(data);
+            if (!parsed.success) {
+              return {
+                success: false,
+                error: parsed.error.message,
+              };
+            }
+
+            const { setContent } = await import("@/lib/storage");
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            await setContent(section, parsed.data as any);
+
+            const { revalidatePath } = await import("next/cache");
+            revalidatePath("/preview");
+
             return {
-              success: false,
-              error: parsed.error.message,
+              success: true,
+              section,
+              message: `Saved ${section} section`,
             };
-          }
+          },
+        }),
+      },
+      stopWhen: stepCountIs(8),
+    });
 
-          const { setContent } = await import("@/lib/storage");
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          await setContent(section, parsed.data as any);
-
-          const { revalidatePath } = await import("next/cache");
-          revalidatePath("/preview");
-
-          return {
-            success: true,
-            section,
-            message: `Saved ${section} section`,
-          };
-        },
+    return result.toUIMessageStreamResponse();
+  } catch (err) {
+    console.error("Onboard AI error:", err);
+    return new Response(
+      JSON.stringify({
+        error: "The AI assistant is temporarily unavailable. Please try again in a moment.",
       }),
-    },
-    stopWhen: stepCountIs(8),
-  });
-
-  return result.toUIMessageStreamResponse();
+      { status: 503, headers: { "Content-Type": "application/json" } }
+    );
+  }
 }

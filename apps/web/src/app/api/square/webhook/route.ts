@@ -10,7 +10,8 @@ const SYNC_EVENT_TYPES = [
 export async function POST(request: NextRequest) {
   const body = await request.text();
   const signature = request.headers.get("x-square-hmacsha256-signature") ?? "";
-  const url = request.url;
+  // Use configured URL for signature verification — request.url may differ behind reverse proxy
+  const url = `${process.env.NEXT_PUBLIC_URL || request.url.split("/api/")[0]}/api/square/webhook`;
 
   // Verify webhook signature
   if (!(await verifyWebhookSignature(body, signature, url))) {
