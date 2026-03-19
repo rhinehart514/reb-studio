@@ -3,7 +3,15 @@ import { google } from "@ai-sdk/google";
 import { z } from "zod";
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  let messages;
+  try {
+    ({ messages } = await req.json());
+  } catch {
+    return new Response(JSON.stringify({ error: "Invalid request" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 
   const result = streamText({
     model: google("gemini-2.5-flash"),
@@ -79,5 +87,5 @@ Your job is to gather information about their business and use the save_section 
     stopWhen: stepCountIs(8),
   });
 
-  return result.toTextStreamResponse();
+  return result.toUIMessageStreamResponse();
 }

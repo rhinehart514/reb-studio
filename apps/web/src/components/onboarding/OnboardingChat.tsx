@@ -1,21 +1,30 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback, type FormEvent } from "react";
-import { Send, Bot, User, Loader2, ExternalLink } from "lucide-react";
+import { useRef, useEffect, useState, type FormEvent } from "react";
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
+import { Send, Bot, User, Loader2, ExternalLink, CheckCircle2 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
-interface ChatMessage {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
+function getMessageText(parts: Array<{ type: string; text?: string }>): string {
+  return parts
+    .filter((p) => p.type === "text" && p.text)
+    .map((p) => p.text)
+    .join("");
 }
 
+const transport = new DefaultChatTransport({ api: "/api/onboard" });
+
 export function OnboardingChat() {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const { messages, sendMessage, status } = useChat({
+    transport,
+  });
+
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const isLoading = status === "submitted" || status === "streaming";
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -27,97 +36,30 @@ export function OnboardingChat() {
     inputRef.current?.focus();
   }, []);
 
-  const sendChat = useCallback(
-    async (text: string) => {
-      if (!text.trim() || isLoading) return;
+  const sendPrompt = (text: string) => {
+    if (!text.trim() || isLoading) return;
+    setInput("");
+    sendMessage({ text });
+  };
 
-      const userMsg: ChatMessage = {
-        id: Date.now().toString(),
-        role: "user",
-        content: text,
-      };
-
-      const allMessages = [...messages, userMsg];
-      setMessages(allMessages);
-      setInput("");
-      setIsLoading(true);
-
-      try {
-        const res = await fetch("/api/onboard", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            messages: allMessages.map((m) => ({
-              role: m.role,
-              content: m.content,
-            })),
-          }),
-        });
-
-        if (!res.ok) {
-          const err = await res.json().catch(() => ({ error: "Request failed" }));
-          setMessages((prev) => [
-            ...prev,
-            {
-              id: Date.now().toString(),
-              role: "assistant",
-              content: `Sorry, something went wrong: ${err.error || res.statusText}`,
-            },
-          ]);
-          setIsLoading(false);
-          return;
-        }
-
-        const reader = res.body?.getReader();
-        if (!reader) {
-          setIsLoading(false);
-          return;
-        }
-
-        const assistantId = (Date.now() + 1).toString();
-        setMessages((prev) => [
-          ...prev,
-          { id: assistantId, role: "assistant", content: "" },
-        ]);
-
-        const decoder = new TextDecoder();
-        let fullText = "";
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          const chunk = decoder.decode(value, { stream: true });
-          fullText += chunk;
-
-          setMessages((prev) =>
-            prev.map((m) =>
-              m.id === assistantId ? { ...m, content: fullText } : m
-            )
-          );
-        }
-      } catch {
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now().toString(),
-            role: "assistant",
-            content: "Sorry, I couldn't connect. Please try again.",
-          },
-        ]);
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [messages, isLoading]
-  );
-
-  const handleSubmit = (e?: FormEvent) => {
-    e?.preventDefault();
-    sendChat(input);
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    sendPrompt(input);
   };
 
   const isEmpty = messages.length === 0;
+
+  // Count saved sections from tool results
+  const savedSections = messages
+    .flatMap((m) => m.parts ?? [])
+    .filter(
+      (p) =>
+        p.type === "tool-invocation" &&
+        p.state === "output-available" &&
+        typeof p.output === "object" &&
+        p.output !== null &&
+        (p.output as Record<string, unknown>).success === true
+    );
 
   return (
     <div className="flex flex-col h-[calc(100vh-3.5rem)] bg-[#0a0a0a]">
@@ -134,6 +76,14 @@ export function OnboardingChat() {
             I&apos;ll build your website as we talk.
           </p>
         </div>
+        {savedSections.length > 0 && (
+          <div className="ml-auto flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-900/30 border border-emerald-800/40">
+            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+            <span className="text-[10px] font-mono text-emerald-400">
+              {savedSections.length} section{savedSections.length !== 1 ? "s" : ""} saved
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Messages */}
@@ -160,7 +110,7 @@ export function OnboardingChat() {
               ].map((prompt) => (
                 <button
                   key={prompt}
-                  onClick={() => sendChat(prompt)}
+                  onClick={() => sendPrompt(prompt)}
                   className="px-4 py-3 rounded-md bg-[#141414] border border-[#262626] text-sm text-zinc-300 hover:bg-[#1c1c1c] hover:text-white hover:border-[#333] transition-colors duration-150 text-left"
                 >
                   &ldquo;{prompt}&rdquo;
@@ -170,64 +120,114 @@ export function OnboardingChat() {
           </div>
         )}
 
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${
-              message.role === "user" ? "justify-end" : "justify-start"
-            }`}
-          >
-            <div
-              className={`flex items-start gap-3 max-w-[85%] ${
-                message.role === "user" ? "flex-row-reverse" : "flex-row"
-              }`}
-            >
-              <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                  message.role === "user" ? "bg-zinc-700" : "bg-violet-600"
-                }`}
-              >
-                {message.role === "user" ? (
-                  <User className="w-3.5 h-3.5 text-zinc-300" />
-                ) : (
-                  <Bot className="w-3.5 h-3.5 text-white" />
-                )}
-              </div>
-              <div
-                className={
-                  message.role === "user" ? "text-right" : "text-left"
+        {messages.map((message) => {
+          const text = getMessageText(message.parts as Array<{ type: string; text?: string }>);
+
+          return (
+            <div key={message.id}>
+              {/* Tool invocation chips */}
+              {message.parts?.map((part, i) => {
+                if (part.type === "tool-invocation") {
+                  const p = part as { type: string; state: string; output?: unknown; args?: unknown };
+                  const isComplete = p.state === "output-available" || p.state === "output-error" || p.state === "output-denied";
+                  const success =
+                    isComplete &&
+                    p.state === "output-available" &&
+                    typeof p.output === "object" &&
+                    p.output !== null &&
+                    (p.output as Record<string, unknown>).success === true;
+                  const sectionName =
+                    typeof p.args === "object" && p.args !== null
+                      ? (p.args as Record<string, unknown>).section
+                      : "section";
+
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 py-1.5 px-3 my-1 rounded-md bg-[#141414] border border-[#262626] w-fit"
+                    >
+                      {isComplete ? (
+                        success ? (
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                        ) : (
+                          <span className="w-3.5 h-3.5 text-amber-400 text-xs">!</span>
+                        )
+                      ) : (
+                        <Loader2 className="w-3.5 h-3.5 text-violet-400 animate-spin" />
+                      )}
+                      <span className="text-xs font-mono text-zinc-400">
+                        {isComplete
+                          ? success
+                            ? `Saved ${sectionName}`
+                            : `Failed to save ${sectionName}`
+                          : `Saving ${sectionName}...`}
+                      </span>
+                    </div>
+                  );
                 }
-              >
+                return null;
+              })}
+
+              {text && (
                 <div
-                  className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
-                    message.role === "user"
-                      ? "bg-violet-600 text-white"
-                      : "bg-[#141414] text-zinc-200 border border-[#262626]"
+                  className={`flex ${
+                    message.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
-                  {message.content ? (
-                    message.role === "assistant" ? (
-                      <div className="chat-markdown">
-                        <ReactMarkdown>{message.content}</ReactMarkdown>
+                  <div
+                    className={`flex items-start gap-3 max-w-[85%] ${
+                      message.role === "user" ? "flex-row-reverse" : "flex-row"
+                    }`}
+                  >
+                    <div
+                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                        message.role === "user" ? "bg-zinc-700" : "bg-violet-600"
+                      }`}
+                    >
+                      {message.role === "user" ? (
+                        <User className="w-3.5 h-3.5 text-zinc-300" />
+                      ) : (
+                        <Bot className="w-3.5 h-3.5 text-white" />
+                      )}
+                    </div>
+                    <div className={message.role === "user" ? "text-right" : "text-left"}>
+                      <div
+                        className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                          message.role === "user"
+                            ? "bg-violet-600 text-white"
+                            : "bg-[#141414] text-zinc-200 border border-[#262626]"
+                        }`}
+                      >
+                        {message.role === "assistant" ? (
+                          <div className="chat-markdown">
+                            <ReactMarkdown>{text}</ReactMarkdown>
+                          </div>
+                        ) : (
+                          <p className="whitespace-pre-wrap">{text}</p>
+                        )}
                       </div>
-                    ) : (
-                      <p className="whitespace-pre-wrap">{message.content}</p>
-                    )
-                  ) : (
-                    <span className="flex items-center gap-2 py-0.5">
-                      <span className="w-2 h-2 rounded-full bg-violet-500 animate-typing-dot" />
-                      <span className="text-xs text-zinc-500">Thinking</span>
-                    </span>
-                  )}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+            </div>
+          );
+        })}
+
+        {isLoading && messages.length > 0 && (
+          <div className="flex justify-start">
+            <div className="px-4 py-3 rounded-2xl bg-[#141414] border border-[#262626]">
+              <span className="flex items-center gap-2 py-0.5">
+                <span className="w-2 h-2 rounded-full bg-violet-500 animate-typing-dot" />
+                <span className="text-xs text-zinc-500">Building...</span>
+              </span>
             </div>
           </div>
-        ))}
+        )}
       </div>
 
-      {/* Preview bar — show after enough conversation */}
-      {messages.length >= 6 && (
+      {/* Preview bar — show after sections are saved */}
+      {savedSections.length >= 2 && (
         <div className="px-4 py-3 border-t border-[#262626] bg-[#0f0f0f]">
           <a
             href="/preview"
@@ -244,7 +244,7 @@ export function OnboardingChat() {
       {/* Input */}
       <div className="p-4 border-t border-[#262626]">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
           className="flex items-center gap-2 bg-[#141414] border border-[#262626] rounded-lg px-4 py-2 focus-within:border-violet-600/50 transition-colors duration-150"
         >
           <input

@@ -42,7 +42,7 @@ export default async function ContentPage() {
   const previews: Record<string, string> = {
     hero: truncate(hero.headline.replace(/\n/g, " "), 40),
     services: `${services.services.length} services`,
-    story: "Updated 3d ago",
+    story: "Your story",
     testimonials: `${testimonials.testimonials.length} reviews`,
     events: `${events.events.length} upcoming`,
     providers: `${providers.providers.length} providers`,
